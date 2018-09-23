@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   #Redirects users to log in when trying to add post
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   include Pundit
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
