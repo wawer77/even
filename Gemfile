@@ -16,6 +16,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 #Added gems
 gem 'bootstrap', '~> 4.1.3'
 gem 'devise'
+gem 'pundit', '~> 2.0'
 
 
 group :development, :test do
