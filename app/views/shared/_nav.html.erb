@@ -1,0 +1,46 @@
+<div class='logo'>
+	<h1>Even</h1>
+</div>
+
+<% if current_user %>
+	<ul class="nav nav-tabs">
+		<li class="<%= active?(root_path) %>">
+			<%= link_to "Home", root_path, {class: 'nav-link'} %>
+		</li>
+		<li class="<%= active?(root_path) %>">
+			<%= link_to "My Balances" %>
+		</li>
+			<li class="<%= active?(root_path) %>">
+			<%= link_to "Create new Balance", id: "new_post_from_nav" %>
+		</li>
+		<li class="dropdown pull-right">
+			<a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
+			<ul class="dropdown-menu">
+				<li>
+					<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+				</li>
+			</ul>
+		</li>
+	</ul>
+<% end %>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Active</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">Disabled</a>
+  </li>
+</ul>
