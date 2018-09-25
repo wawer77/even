@@ -27,4 +27,4 @@
 /config/master.key
 
 #skel files
-*.skel
+#*.skel

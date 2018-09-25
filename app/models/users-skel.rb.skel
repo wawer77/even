@@ -1,0 +1,16 @@
+class User < ApplicationRecord
+#devise...
+
+has_many :balances
+has_many :balancers, through: :balances, source: :users
+
+end
+
+
+
+class Balance < ApplicationRecord
+
+belongs_to :user
+belongs_to :balancers, class_name: 'Users' # or source: :users  ???
+
+end
