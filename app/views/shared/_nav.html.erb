@@ -3,6 +3,7 @@
 </div>
 
 	<ul class="nav nav-tabs">
+	<% if current_user %>
 		<li class="nav-item">
 			<%= link_to "Home", root_path, {class: "nav-link #{active?(root_path)}"} %>
 		</li>
@@ -18,4 +19,12 @@
 				<%= link_to "Logout", destroy_user_session_path, {method: :delete, class: "dropdown-item"} %>
 			</div>
 		</li>
+	<% else %>	
+		<li class="nav-item">
+			<%= link_to "Home", root_path, {class: "nav-link #{active?(root_path)}"} %>
+		</li>
+		<li class="nav-item">
+			<%= link_to "Log in", new_user_session_path, {class: "nav-link #{active?(new_user_session_path)}"}  %>
+		</li>
+	<% end %>
 	</ul>
