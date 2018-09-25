@@ -1,0 +1,30 @@
+<div class='logo'>
+	<h1>Even</h1>
+</div>
+
+	<ul class="nav nav-tabs">
+	<% if current_user %>
+		<li class="nav-item">
+			<%= link_to "Home", root_path, {class: "nav-link #{active?(root_path)}"} %>
+		</li>
+		<li class="nav-item">
+			<%= link_to "My Balances", root_path, {class: "nav-link #{active?(root_path)}"}  %>
+		</li>
+			<li class="nav-item">
+			<%= link_to "Create new Balance", root_path, {class: "nav-link #{active?(root_path)}"} %>
+		</li>
+		<li class="nav-item dropdown pull-right">
+			<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" role="button">Options<strong class="caret"></strong></a>
+			<div class="dropdown-menu dropdown-menu-right">
+				<%= link_to "Logout", destroy_user_session_path, {method: :delete, class: "dropdown-item"} %>
+			</div>
+		</li>
+	<% else %>	
+		<li class="nav-item">
+			<%= link_to "Home", root_path, {class: "nav-link #{active?(root_path)}"} %>
+		</li>
+		<li class="nav-item">
+			<%= link_to "Log in", new_user_session_path, {class: "nav-link #{active?(new_user_session_path)}"}  %>
+		</li>
+	<% end %>
+	</ul>
