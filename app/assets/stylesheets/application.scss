@@ -3,6 +3,9 @@
 @import "gritter";
 
 #bootstrap-overrides {
+  .dropdown-menu {
+    border-top-left-radius: 3px;
+  }
   .jumbotron {
     border-top-left-radius: 0;
   }
@@ -17,7 +20,4 @@
   .pull-right {
     margin-left: auto; 
   } 
-  .dropdown-menu {
-    border-top-left-radius: 3px;
-  }
 }
