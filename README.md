@@ -1,6 +1,10 @@
 # Even
 To stay even with your friends.
 
+##CURRENT TO DO:
+- Run user tests to see if the new webdrivers working(will that prove it?)
+- update sass
+
 ## Description
 App for managing debts between users. Every user has a dashboard with balances list - every with another user/ Every change made to the balance must be accepted.
 
