@@ -19,6 +19,7 @@ gem 'devise'
 gem 'gritter', '~> 1.2'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'pundit', '~> 2.0'
+gem 'pry-rails', :group => :development
 
 
 group :development, :test do
