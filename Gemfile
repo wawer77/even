@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 #Preinstalled gems
 ruby '2.5.1'
 gem 'rails', '~> 5.2.1'
@@ -14,13 +14,19 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 #Added gems
-gem 'bootstrap', ">= 4.3.1"
-gem 'devise', ">= 4.6.0"
+gem 'bootstrap', '>= 4.3.1'
+gem 'devise', '>= 4.6.0'
 gem 'gritter', '~> 1.2'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'pundit', '~> 2.0'
 gem 'pry-rails', :group => :development
 
+#Security vulnerabilities resolve:
+gem 'actionview', '>= 5.2.2.1'
+gem 'railties', '>= 5.2.2.1'
+gem 'nokogiri', '>= 1.8.5'
+gem 'rack', '>= 2.0.6'
+gem 'loofah', '>= 2.2.3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
