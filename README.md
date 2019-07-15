@@ -1,7 +1,7 @@
 # Even
 To stay even with your friends.
 
-##CURRENT TO DO:
+## CURRENT TO DO:
 - Run user tests to see if the new webdrivers working(will that prove it?)
 - update sass
 
