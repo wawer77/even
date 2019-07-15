@@ -44,7 +44,9 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  #gem 'chromedriver-helper'
+  #webdriver as chromedriver deprecated
+  gem 'webdrivers', '~> 4.0'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
