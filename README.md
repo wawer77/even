@@ -2,7 +2,10 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
-- update sass
+
+
+## Knowon issues suspended for now:
+- gem sass is deprecated, therefore need for sassc and rails-sassc
 
 ## Description
 App for managing debts between users. Every user has a dashboard with balances list - every with another user/ Every change made to the balance must be accepted.
