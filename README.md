@@ -2,9 +2,13 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
+- create balance model, controller and views to connect the users
+- reference users for one balance using balancer1 and balancer2 
+- a way to save every balance change - Active Model Dirty
 
+-start without views and check in console
 
-## Knowon issues suspended for now:
+## Known issues suspended for now:
 - gem sass is deprecated, therefore need for sassc and rails-sassc
 
 ## Description

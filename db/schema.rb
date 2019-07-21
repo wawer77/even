@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_23_184904) do
+ActiveRecord::Schema.define(version: 2019_07_21_221334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "balances", force: :cascade do |t|
+    t.bigint "balancer_1_id"
+    t.bigint "balancer_2_id"
+    t.float "balancer_1_debt"
+    t.float "balancer_2_debt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["balancer_1_id"], name: "index_balances_on_balancer_1_id"
+    t.index ["balancer_2_id"], name: "index_balances_on_balancer_2_id"
+  end
+
+  create_table "balances_users", force: :cascade do |t|
+    t.bigint "balance_id"
+    t.bigint "user_id"
+    t.index ["balance_id"], name: "index_balances_users_on_balance_id"
+    t.index ["user_id"], name: "index_balances_users_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,4 +48,6 @@ ActiveRecord::Schema.define(version: 2018_09_23_184904) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "balances", "users", column: "balancer_1_id"
+  add_foreign_key "balances", "users", column: "balancer_2_id"
 end
