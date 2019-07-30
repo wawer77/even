@@ -1,0 +1,27 @@
+<h2>New balance</h2>
+
+<%= form_for @balance do |f| %>
+  <% if @balance.errors.any? %>
+    <% @balance.errors.full_messages.each do |error| %>
+      <%= js add_gritter(error, title: "Even App Notification", sticky: false) %>
+    <% end %>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :balancer_2_id %><br />
+    <%= f.email_field :balancer_2_id, autofocus: true, autocomplete: "Put the person's ID" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :balancer_2_debt %>
+    <% # must be text, because for number_field HTML wants no decimal %>
+  	<%= f.text_field :balancer_2_debt, autocomplete: "Put the person's debt or your debt with '-' sign in front"%>
+  </div>
+
+  <% #need to do it with partial:, so we can pass locals-f because were iterating %>
+  <%=# render partial: 'status', locals: { f: f } if current_user.type == 'AdminUser' %>
+  <div class="actions">
+    <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
+  </div>
+
+<% end %>
