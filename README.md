@@ -2,9 +2,10 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
+- User.balances does not work, because of two types of user (user_1 and 2) and has_many override  -idea now is to leave it as it is and push it to methods
+- OR don't leave it like it is (foreign_key) and make it has_many through, but still keep it as user_1 and 2
 - create balance controller and views
 - a way to save every balance change - Active Model Dirty
-
 -start without views and check in console
 
 ## Known issues suspended for now:
