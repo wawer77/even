@@ -10,8 +10,6 @@ class BalancesController < ApplicationController
   def create
     @balance = Balance.new(balance_params)
     #balancer_1_id = current_user
-    @balancer_1_id = 1
-    @balancer_2_id = 2
     if @balance.save
       redirect_to @balance, notice: "Your balance was created successfully"
     else
@@ -35,7 +33,7 @@ class BalancesController < ApplicationController
   private
 
   def balance_params
-    params.require(:balance).permit(:balancer_1_id, :balancer_2_id, :balancer_1_debt, :balancer_2_debt)
+    params.require(:balance).permit(:name, :value , :owner_id, :addded_user_id)
   end
 
 end

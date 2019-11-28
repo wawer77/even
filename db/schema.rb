@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_202433) do
+ActiveRecord::Schema.define(version: 2019_11_28_202634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "balances", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.float "value"
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.string "added_user_type"
+    t.bigint "added_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["added_user_type", "added_user_id"], name: "index_balances_on_added_user_type_and_added_user_id"
+    t.index ["owner_type", "owner_id"], name: "index_balances_on_owner_type_and_owner_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
