@@ -2,9 +2,10 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
+- develop balance controller and views
+- a way to save every balance change - Active Model Dirty
 
-
-## Knowon issues suspended for now:
+## Known issues suspended for now:
 - gem sass is deprecated, therefore need for sassc and rails-sassc
 
 ## Description
@@ -56,3 +57,6 @@ App for managing debts between users. Every user has a dashboard with balances l
 
 ## Test suite
 ## Deployment instructions
+
+## Comments
+- Used relationship: https://stackoverflow.com/questions/49605108/adding-multiple-users-into-a-single-record-rails-5
