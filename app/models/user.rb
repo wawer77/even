@@ -7,6 +7,6 @@ class User < ApplicationRecord
 
   #has_many  :started_balances, :class_name => 'Balance', :foreign_key => 'balancer_1_id'
   #has_many  :added_to_balances, :class_name => 'Balance', :foreign_key => 'balancer_2_id'
-  has_many :balances, as: :owner
-  has_many :balances, as: :added_user
+  has_many :own_balances, as: :owner, class_name: 'Balance'
+  has_many :added_to_balances, as: :added_user, class_name: 'Balance'
 end

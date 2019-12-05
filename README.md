@@ -2,11 +2,8 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
-- New user balance with https://guides.rubyonrails.org/association_basics.html#polymorphic-associations
-not working properly - lack of connection balance-user(?)
-- create balance controller and views
+- develop balance controller and views
 - a way to save every balance change - Active Model Dirty
--start without views and check in console
 
 ## Known issues suspended for now:
 - gem sass is deprecated, therefore need for sassc and rails-sassc
@@ -60,3 +57,6 @@ App for managing debts between users. Every user has a dashboard with balances l
 
 ## Test suite
 ## Deployment instructions
+
+## Comments
+- Used relationship: https://stackoverflow.com/questions/49605108/adding-multiple-users-into-a-single-record-rails-5

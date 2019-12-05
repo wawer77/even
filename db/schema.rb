@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_202634) do
+ActiveRecord::Schema.define(version: 2019_12_05_232753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,14 +19,12 @@ ActiveRecord::Schema.define(version: 2019_11_28_202634) do
     t.string "name"
     t.text "description"
     t.float "value"
-    t.string "owner_type"
-    t.bigint "owner_id"
-    t.string "added_user_type"
-    t.bigint "added_user_id"
+    t.integer "owner_id"
+    t.integer "added_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["added_user_type", "added_user_id"], name: "index_balances_on_added_user_type_and_added_user_id"
-    t.index ["owner_type", "owner_id"], name: "index_balances_on_owner_type_and_owner_id"
+    t.string "owner_type"
+    t.string "added_user_type"
   end
 
   create_table "users", force: :cascade do |t|
