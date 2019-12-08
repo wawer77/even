@@ -5,23 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-#@user = User.create!(email: "user@test.com",
-#                    password: "foobar",
-#                    password_confirmation: "foobar",
-#                    first_name: "Firstuser",
-#                    last_name: "Firstuser",
-#                    username: "Firstuser")
-#
-#@user = User.create!(email: "user2@test.com",
-#                    password: "foobar",
-#                    password_confirmation: "foobar",
-#                    first_name: "Seconduser",
-#                    last_name: "Seconduser",
-#                    username: "Seconduser")
+@user = User.create!(email: "user@test.com",
+                    password: "foobar",
+                    password_confirmation: "foobar",
+                    first_name: "Firstuser",
+                    last_name: "Firstuser",
+                    username: "Firstuser")
+
+@user = User.create!(email: "user2@test.com",
+                    password: "foobar",
+                    password_confirmation: "foobar",
+                    first_name: "Seconduser",
+                    last_name: "Seconduser",
+                    username: "Seconduser")
+                    
 @balance = Balance.create!(name: "balance1",
                           description: "balance description",
                           value: 0,
                           owner_id: 1,
-                          added_user_id: 2)
+                          owner_type: 'User',
+                          added_user_id: 2,
+                          added_user_type: 'User')
 
 puts "2 regular user created"
