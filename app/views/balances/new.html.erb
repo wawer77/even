@@ -8,14 +8,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :balancer_2_id %><br />
-    <%= f.number_field :balancer_2_id, autofocus: true, autocomplete: "Put the person's ID" %>
+    <%= f.label :added_user_id %><br />
+    <%= f.number_field :added_user_id, autofocus: true, autocomplete: "Put the person's ID" %>
   </div>
 
   <div class="field">
-    <%= f.label :balancer_2_debt %><br />
+    <%= f.label :value %><br />
     <% # must be text, because for number_field HTML wants no decimal %>
-  	<%= f.text_field :balancer_2_debt, autocomplete: "Put the person's debt or your debt with '-' sign in front"%>
+  	<%= f.text_field :value, autocomplete: "Put the person's debt or your debt with '-' sign in front"%>
   </div>
 
   <% #need to do it with partial:, so we can pass locals-f because were iterating %>
