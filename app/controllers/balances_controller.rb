@@ -9,7 +9,8 @@ class BalancesController < ApplicationController
 
   def create
     @balance = Balance.new(balance_params)
-    #balancer_1_id = current_user
+    @balance.owner_id = current_user.id
+
     if @balance.save
       redirect_to @balance, notice: "Your balance was created successfully"
     else
