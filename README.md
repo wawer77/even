@@ -2,7 +2,12 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
-- develop balance controller and views
+- develop balance controller and views:
+    - New: Make fields work properly
+    - New: choose who owes
+    - List of balances
+    - Amend balance (add another )
+- Users in new balance defined by username/name/surname/email and Autocomplete    
 - a way to save every balance change - Active Model Dirty
 
 ## Known issues suspended for now:

@@ -4,7 +4,7 @@ git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 ruby '2.5.1'
 gem 'rails', '~> 5.2.1'
 gem 'pg', '>= 0.18', '< 2.0'
-gem "puma", ">= 3.12.2"
+gem "puma", ">= 4.3.3"
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
@@ -22,10 +22,10 @@ gem 'pundit', '~> 2.0'
 gem 'pry-rails', :group => :development
 
 #Security vulnerabilities resolve:
-gem 'actionview', '>= 5.2.2.1'
+gem 'actionview', '>= 5.2.4.2'
 gem 'railties', '>= 5.2.2.1'
-gem 'nokogiri', '>= 1.10.4'
-gem 'rack', '>= 2.0.6'
+gem 'nokogiri', '>= 1.10.8'
+gem 'rack', '>= 2.0.8'
 gem 'loofah', '>= 2.3.1'
 
 group :development, :test do
