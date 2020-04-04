@@ -8,18 +8,18 @@
 			<%= link_to "Home", root_path, {class: "nav-link #{active?(root_path)}"} %>
 		</li>
 		<li class="nav-item">
-			<%= link_to "My Balances", root_path, {class: "nav-link #{active?(root_path)}"}  %>
+			<%= link_to "My Balances", balances_path, {class: "nav-link #{active?(balances_path)}"}  %>
 		</li>
 			<li class="nav-item">
-			<%= link_to "Create new Balance", root_path, {class: "nav-link #{active?(root_path)}"} %>
+			<%= link_to "Create new Balance", new_balance_path, {class: "nav-link #{active?(new_balance_path)}"} %>
 		</li>
 		<li class="nav-item dropdown pull-right">
-			<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" role="button">Options<strong class="caret"></strong></a>
+			<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" role="button"><%= current_user.username %> <strong class="caret"></strong></a>
 			<div class="dropdown-menu dropdown-menu-right">
 				<%= link_to "Logout", destroy_user_session_path, {method: :delete, class: "dropdown-item"} %>
 			</div>
 		</li>
-	<% else %>	
+	<% else %>
 		<li class="nav-item">
 			<%= link_to "Home", root_path, {class: "nav-link #{active?(root_path)}"} %>
 		</li>
