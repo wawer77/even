@@ -1,7 +1,7 @@
 <div>
   <% @balances.each do |balance| %>
   <div>
-    <h3> Name: <%= balance.name %> </h3>
+    <h3> Name: <%= link_to "#{balance.name}", balance_path(balance) %>  </h3>
     <p> ID: <%= balance.id %> </p>
     <p> With user: <%= otheruser(balance) %> </p>
     <p> Status: <%= situation(balance) %> </p>

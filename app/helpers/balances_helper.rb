@@ -11,19 +11,19 @@ module BalancesHelper
   def situation(balance)
    if balance.owner_id == current_user.id
       if balance.value > 0
-       statement="You lended"
+       statement = "You lended"
       elsif balance.value < 0
-        statement="You owe"
+        statement = "You owe"
       else
-        statement="You are even!"
+        statement = "You are even!"
       end
     else
       if balance.value > 0
-        statement="You owe"
+        statement = "You owe"
       elsif balance.value < 0
-        statement="You lended"
+        statement = "You lended"
       else
-        statement="You are even!"
+        statement = "You are even!"
       end
     end
     statement + " " + (balance.value unless balance.value == 0).to_s
