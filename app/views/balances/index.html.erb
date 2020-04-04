@@ -1,0 +1,11 @@
+<div>
+  <% @balances.each do |balance| %>
+  <div>
+    <h3> Name: <%= balance.name %> </h3>
+    <p> ID: <%= balance.id %> </p>
+    <p> With user: <%= otheruser(balance) %> </p>
+    <p> Status: <%= situation(balance) %> </p>
+  </div>
+  <hr class="my-4">
+  <% end %>
+</div>

@@ -1,6 +1,9 @@
 class BalancesController < ApplicationController
 
   def index
+      @own_balances = Balance.where(owner_id: current_user.id)
+      @added_to_balances = Balance.where(added_user_id: current_user.id)
+      @balances = @own_balances + @added_to_balances
   end
 
   def new
