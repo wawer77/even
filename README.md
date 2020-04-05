@@ -2,13 +2,19 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
-- develop balance controller and views:
+- Add transactions to balance to keep the record
+- Keep the balance model as it is for now (in terms of user<->balance relationship)
+- use simple form
+- change balance.user names -> user and peer
+- check if migrations are flawless
+
+- Further changes:    
     - New: Make fields work properly
     - New: choose who owes
-    - List of balances
     - Amend balance (add another )
-- Users in new balance defined by username/name/surname/email and Autocomplete    
-- a way to save every balance change - Active Model Dirty
+    - Navbar: highlight My Balances tab, when on page: balance/id    
+    - Users in new balance defined by username/name/surname/email and Autocomplete    
+    - a way to save every balance change - Active Model Dirty
 
 ## Known issues suspended for now:
 - gem sass is deprecated, therefore need for sassc and rails-sassc
@@ -57,8 +63,8 @@ App for managing debts between users. Every user has a dashboard with balances l
 - run bundle install
 
 ## Database
-- configure user and password in databse.yml if needed
-- run db:create, db:migrate
+- configure user and password in database.yml if needed
+- run: rake db:create, rake db:migrate
 
 ## Test suite
 ## Deployment instructions
