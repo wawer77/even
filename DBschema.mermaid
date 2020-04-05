@@ -1,0 +1,35 @@
+```mermaid
+
+classDiagram
+  Users --|> Transactions
+  Transactions -- Balances
+  Users <|--|> BalanceMatchers
+  BalanceMatchers <|--|> Balances
+
+
+  class Balances {
+    +Integer id
+    +String name
+  }
+
+
+  class Users {
+    +Integer id 
+    +String email
+  }
+
+  class BalanceMatchers {
+    +Integer id
+    +Integer user_id
+    +Integer balance_id
+  }
+
+  class Transactions{
+    +String description
+    +Integer value 
+    +Integer issuer_id 
+    +Integer receiver_id 
+    +Boolean send_money  
+    +Integer balance_id 
+	}
+```

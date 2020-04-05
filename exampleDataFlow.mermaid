@@ -1,0 +1,74 @@
+```mermaid
+
+classDiagram
+  UserKazik <|-- Transaction1
+  UserTomek <|-- Transaction1
+
+  UserKazik <|-- Transaction2
+  UserTomek <|-- Transaction2
+
+  Transaction2 <|-- BalancePiwo
+  Transaction1 <|-- BalanceMecz
+
+
+  UserKazik --|> BalanceMatcherPiwo
+  UserTomek --|> BalanceMatcherPiwo
+
+  BalanceMatcherPiwo --|> BalancePiwo
+
+
+  class UserKazik {
+  +Integer id 
+  +String email
+  }
+
+  class UserTomek {
+  +Integer id 
+  +String email
+  }
+
+  class BalancePiwo {
+  +Integer id
+  +String name
+  +Integer user_id
+  }
+
+  class BalanceMecz {
+  +Integer id
+  +String name
+  +Integer user_id
+  }
+
+
+  
+
+
+  class BalanceMatcherPiwo {
+    +Integer id [1]
+    +Integer user_id [UserKazik]
+    +Integer balance_id [BalancePiwo]
+
+    +Integer id [2]
+    +Integer user_id [UserTomek]
+    +Integer balance_id [BalancePiwo]
+  }
+
+	class Transaction1{
+		+String description
+    +Integer value  [20]
+    +Integer issuer_id [UserTomek]
+    +Integer receiver_id [UserKazik]
+    +send_money boolean [false]
+    +Integer balance_id [BalanceMecz]
+	}
+
+  class Transaction2{
+		+String description
+    +Integer value [10]
+    +Integer issuer_id [UserKazik]
+    +Integer receiver_id [UserTomek]
+    +send_money boolean [true]
+    +Integer balance_id [BalancePiwo]
+	}
+
+```
