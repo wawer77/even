@@ -8,10 +8,10 @@
 			<%= link_to "Home", root_path, {class: "nav-link #{active?(root_path)}"} %>
 		</li>
 		<li class="nav-item">
-			<%= link_to "My Balances", balances_path, {class: "nav-link #{active?(balances_path)}"}  %>
+			<%= link_to "My transactions", transactions_path, {class: "nav-link #{active?(transactions_path)}"}  %>
 		</li>
 			<li class="nav-item">
-			<%= link_to "Create new Balance", new_balance_path, {class: "nav-link #{active?(new_balance_path)}"} %>
+			<%= link_to "Create new transaction", new_transaction_path, {class: "nav-link #{active?(new_transaction_path)}"} %>
 		</li>
 		<li class="nav-item dropdown pull-right">
 			<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle" role="button"><%= current_user.username %> <strong class="caret"></strong></a>

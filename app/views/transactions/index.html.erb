@@ -1,0 +1,12 @@
+
+<div>
+  <% @transactions.each do |transaction| %>
+  <div>
+    <h3> Name: <%= link_to "#{transaction.id}", transaction_path(transaction) %>  </h3>
+    <p> ID: <%= transaction.id %> </p>
+    <p> With user: <%# otheruser(transaction) %> </p>
+    <p> Status: <%# situation(transaction) %> </p>
+  </div>
+  <hr class="my-4">
+  <% end %>
+</div>

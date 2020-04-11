@@ -1,8 +1,8 @@
 class TransactionsController < ApplicationController
     def index
-        #@own_transactions = transaction.where(owner_id: current_user.id)
-        #@added_to_transactions = transaction.where(added_user_id: current_user.id)
-        #@transactions = @own_transactions + @added_to_transactions
+        @issued_transactions = Transaction.where(issuer_id: current_user.id)
+        @received_transactions = Transaction.where(receiver_id: current_user.id)
+        @transactions = @issued_transactions + @received_transactions
     end
   
     def new
@@ -20,7 +20,7 @@ class TransactionsController < ApplicationController
     end
   
     def show
-      @transaction = transaction.find(params[:id])
+      @transaction = Transaction.find(params[:id])
     end
   
     def edit

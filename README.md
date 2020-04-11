@@ -4,6 +4,7 @@ To stay even with your friends.
 ## CURRENT TO DO:
 - Modify the DB as in the mermaid preview
 - use simple form
+- ISSUE: Signed in/out notice shows up at the bottom (instead of a box in upperr-right corner)
 
 - Further changes:    
     - New: Make fields work properly
