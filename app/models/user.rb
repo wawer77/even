@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates_presence_of :first_name, :last_name, :username
 
-  has_many :own_balances, as: :owner, class_name: 'Balance'
-  has_many :added_to_balances, as: :added_user, class_name: 'Balance'
+  has_many :issued_transactions, as: :issuer, class_name: 'Transaction'
+  has_many :received_transactions, as: :receiver, class_name: 'Transaction' 
+
 end
