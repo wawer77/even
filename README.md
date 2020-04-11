@@ -2,11 +2,8 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
-- Add transactions to balance to keep the record
-- Keep the balance model as it is for now (in terms of user<->balance relationship)
+- Modify the DB as in the mermaid preview
 - use simple form
-- change balance.user names -> user and peer
-- check if migrations are flawless
 
 - Further changes:    
     - New: Make fields work properly
