@@ -23,28 +23,16 @@ DatabaseCleaner.clean_with(:truncation)
                     last_name: "Seconduser",
                     username: "Seconduser")
                     
-@balance = Balance.create!(name: "balance1",
-                          description: "balance description",
-                          value: 0,
-                          owner_id: 1,
-                          owner_type: 'User',
-                          added_user_id: 2,
-                          added_user_type: 'User')
-                            
-@balance = Balance.create!(name: "balance2",
-                            description: "balance description",
-                            value: 10,
-                            owner_id: 1,
-                            owner_type: 'User',
-                            added_user_id: 2,
-                            added_user_type: 'User')
+@transaction = Transaction.create!(description: "transaction 1",
+                                    value: 10,
+                                    issuer_id: 1,
+                                    receiver_id: 2,
+                                    send_money: true)
+    
+@transaction = Transaction.create!(description: "transaction 2",
+                                    value: 10,
+                                    issuer_id: 1,
+                                    receiver_id: 2,
+                                    send_money: false)
                            
-@balance = Balance.create!(name: "balance3",
-                            description: "balance description",
-                            value: -10,
-                            owner_id: 1,
-                            owner_type: 'User',
-                            added_user_id: 2,
-                            added_user_type: 'User')
-
-puts "2 regular users and 3 balances created"
+puts "2 regular users and 2 transactions created"
