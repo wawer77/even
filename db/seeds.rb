@@ -5,6 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'database_cleaner'
+DatabaseCleaner.clean_with(:truncation)
+
 @user = User.create!(email: "user@test.com",
                     password: "foobar",
                     password_confirmation: "foobar",
@@ -26,5 +30,21 @@
                           owner_type: 'User',
                           added_user_id: 2,
                           added_user_type: 'User')
+                            
+@balance = Balance.create!(name: "balance2",
+                            description: "balance description",
+                            value: 10,
+                            owner_id: 1,
+                            owner_type: 'User',
+                            added_user_id: 2,
+                            added_user_type: 'User')
+                           
+@balance = Balance.create!(name: "balance3",
+                            description: "balance description",
+                            value: -10,
+                            owner_id: 1,
+                            owner_type: 'User',
+                            added_user_id: 2,
+                            added_user_type: 'User')
 
-puts "2 regular user created"
+puts "2 regular users and 3 balances created"

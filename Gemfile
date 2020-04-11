@@ -21,6 +21,7 @@ gem 'gritter', '~> 1.2'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'pundit', '~> 2.0'
 gem 'pry-rails', :group => :development
+gem 'database_cleaner'
 
 #Security vulnerabilities resolve:
 gem 'actionview', '>= 5.2.4.2'
