@@ -1,19 +1,19 @@
 <h2>New transaction</h2>
 
-<%= simple_form_for @transaction do |f| %>
+<%= simple_form_for @transaction, defaults: { required: false } do |f| %>
   <% if @transaction.errors.any? %>
     <% @transaction.errors.full_messages.each do |error| %>
-      <%= js add_gritter(error, title: "Even App Notification", sticky: false) %>
+      <%= js add_gritter(error, title: "Even App Notification", sticky: false, time: 500) %>
     <% end %>
   <% end %>
 
     <br />
     <%= f.input :description, label: "Description:", placeholder: "Describe the transaction" %>
     <%= f.input :receiver_id, label: "Receiver:", placeholder: "Provide the transaction's receiver ID"  %>
-    <%= f.input :send_money, label: "Type of transaction:",  as: :radio_buttons, collection: [['I lend the money', '1'], ['I borrow the money', '0']] %>
+    <%= f.input :send_money, label: "Transaction type:",  as: :radio_buttons, collection: [['I lend the money', '1'], ['I borrow the money', '0']] %>
     <%= f.input :value, label: "Value:", placeholder: "Provide the value" %>    
     <hr />  
-
+    <br>
     <div class="actions">
       <%= f.submit 'Send', class: 'btn btn-primary btn-block' %>
     </div>
