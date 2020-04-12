@@ -7,9 +7,7 @@
 
   <% if devise_mapping.rememberable? -%>
 
-      <%= f.check_box :remember_me, label: "Remember me" %>
-      <%# Why the label here doesn't work? %>
-      <%= f.label :remember_me %>
+      <%= f.input :remember_me, as: :boolean, label: 'Remember me' %>
   <% end %>
 
   <div class="actions">
