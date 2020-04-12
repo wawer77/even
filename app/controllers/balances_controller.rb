@@ -1,7 +1,7 @@
 class BalancesController < ApplicationController
     def index
         #@issued_balances = Balance.where(issuer_id: current_user.id)
-        #@received_balances = Balance.where(receiver_id: current_user.id)
+        #@received_balances = Balance.where(partner_id: current_user.id)
         #@balances = @issued_balances + @received_balances
     end
   
@@ -11,7 +11,8 @@ class BalancesController < ApplicationController
   
     def create
       @balance = Balance.new(balance_params)
-      #@balance.issuer_id = current_user.id
+      @partner = User.where(id: @balance.partner_id)
+      @balance.users << [current_user, @partner]
       if @balance.save
         redirect_to @balance, notice: "Your balance was created successfully!"
       else
@@ -20,7 +21,7 @@ class BalancesController < ApplicationController
     end
   
     def show
-      #@balance = Balance.find(params[:id])
+      @balance = Balance.find(params[:id])
     end
   
     def edit
@@ -35,6 +36,6 @@ class BalancesController < ApplicationController
     private
   
     def balance_params
-      params.require(:balance).permit(:name, :description)
+      params.require(:balance).permit(:name, :description, :partner_id)
     end
 end
