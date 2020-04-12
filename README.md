@@ -7,6 +7,9 @@ To stay even with your friends.
   - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
   - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
     - Doesn't check for . after @ - add it
+-User.issued_transactions
+      - SELECT COUNT(*) FROM "transactions" WHERE "transactions"."issuer_id" = $1 AND "transactions"."issuer_type" = $2  [["issuer_id", 1], ["issuer_type", "User"]]
+      ActiveRecord::StatementInvalid: PG::InFailedSqlTransaction: ERROR:  current transaction is aborted, commands ignored until end of transaction block  
 
 - Further changes:    
     - New: Make fields work properly

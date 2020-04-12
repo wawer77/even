@@ -3,9 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
   validates_presence_of :first_name, :last_name, :username
 
   has_many :issued_transactions, as: :issuer, class_name: 'Transaction'
   has_many :received_transactions, as: :receiver, class_name: 'Transaction' 
-
+  has_and_belongs_to_many :balances
 end
