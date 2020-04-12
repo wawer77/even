@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
     end
   
     def create
-      @transaction = transaction.new(transaction_params)
+      @transaction = Transaction.new(transaction_params)
       @transaction.issuer_id = current_user.id
       if @transaction.save
         redirect_to @transaction, notice: "Your transaction was created successfully!"
