@@ -1,0 +1,20 @@
+<h2>New balance</h2>
+
+<%= simple_form_for @balance, defaults: { required: false } do |f| %>
+  <% if @balance.errors.any? %>
+    <% @balance.errors.full_messages.each do |error| %>
+      <%= js add_gritter(error, title: "Even App Notification", sticky: false, time: 500) %>
+    <% end %>
+  <% end %>
+
+    <br />
+    <%= f.input :name, label: "Name:", placeholder: "Name the balance" %>
+    <%= f.input :description, label: "Description:", placeholder: "Describe the balance" %>
+    <%= f.input :partner_id, label: "Partner:", placeholder: "Provide the balance partner's ID"  %>
+    <hr />  
+    <br>
+    <div class="actions">
+      <%= f.submit 'Create', class: 'btn btn-primary btn-block' %>
+    </div>
+
+<% end %>
