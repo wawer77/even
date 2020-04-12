@@ -3,8 +3,13 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 - Modify the DB as in the mermaid preview
-- use simple form
-- ISSUE: Signed in/out notice shows up at the bottom (instead of a box in upperr-right corner)
+- use simple form + form fixes
+  - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
+  - Radio buttons - new transaction - the message is 'SEND MONEY can't be blank' - change it to "Type of transaction", as it is in the field
+  - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
+    - Doesn't check for . after @ - add it
+  - Asteriks in simple_form, where input required (after model validation setup) - make them disappear
+  - Remember me in login doesn't work - must be added separately
 
 - Further changes:    
     - New: Make fields work properly
