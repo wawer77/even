@@ -8,6 +8,12 @@
 			<%= link_to "Home", root_path, {class: "nav-link #{active?(root_path)}"} %>
 		</li>
 		<li class="nav-item">
+			<%= link_to "My balances", balances_path, {class: "nav-link #{active?(balances_path)}"}  %>
+		</li>
+			<li class="nav-item">
+			<%= link_to "Create new balance", new_balance_path, {class: "nav-link #{active?(new_balance_path)}"} %>
+		</li>		
+		<li class="nav-item">
 			<%= link_to "My transactions", transactions_path, {class: "nav-link #{active?(transactions_path)}"}  %>
 		</li>
 			<li class="nav-item">
