@@ -1,0 +1,14 @@
+
+<div>
+  <% @balances.each do |balance| %>
+  <div>
+    <h3> Name: <%= link_to "#{balance.name}", balance_path(balance) %>  </h3>
+    <p> ID: <%= balance.id %> </p>
+    <%# Does the line below need to be here? How to put it into the controller? %>
+    <% partner = balance.users.where.not(id: current_user.id).first %>
+    <p> With user: <%= partner.username %> </p>
+    <p> Status: <%# situation(balance) %> </p>
+  </div>
+  <hr class="my-4">
+  <% end %>
+</div>

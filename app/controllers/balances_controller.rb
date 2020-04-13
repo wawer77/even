@@ -1,8 +1,6 @@
 class BalancesController < ApplicationController
     def index
-        #@issued_balances = Balance.where(issuer_id: current_user.id)
-        #@received_balances = Balance.where(partner_id: current_user.id)
-        #@balances = @issued_balances + @received_balances
+        @balances = current_user.balances
     end
   
     def new
