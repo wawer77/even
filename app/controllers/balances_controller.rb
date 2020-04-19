@@ -1,6 +1,22 @@
 class BalancesController < ApplicationController
     def index
-        @balances = current_user.balances
+        @current_user_all_balances = current_user.balances
+        @balance_partners = []
+        @current_user_all_balances.each do |balance|
+          partner = balance.users.where.not(id: current_user.id).first
+          @balance_partners << partner
+        end
+        
+        i = 0
+        @response = []
+        loop do
+          @response << {
+            balance: @current_user_all_balances[i],
+            partner: @balance_partners[i]
+          }
+          i += 1
+          break if @current_user_all_balances[i] == nil
+        end
     end
   
     def new
