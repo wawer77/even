@@ -1,11 +1,11 @@
 
 <div>
-  <% @response.each do |response| %>
+  <% @output.each do |output| %>
   <div>
-    <h3> Name: <%= link_to "#{response[:balance].name}", balance_path(response[:balance]) %>  </h3>
-    <p> ID: <%= response[:balance].id %> </p>
+    <h3> Name: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>  </h3>
+    <p> ID: <%= output[:balance].id %> </p>
     <%  %>
-    <p> With user: <%= response[:partner].username %> </p>
+    <p> With user: <%= output[:partner].username %> </p>
     <p> Status: <%# situation(current_user_balance) %> </p>
   </div>
   <hr class="my-4">
