@@ -1,8 +1,6 @@
-<h2>Balance</h2>
+<h2>Balance</h2><br>
 
 <div>
-  <%= @balance %><br>
-  <% @balance.users.each do |user| %>
-    <%= user.username %><br>
-  <% end %>
-<div>
+  <h3> Name: <%= @balance.name %> </h3>
+  <h3> With user: <%= @balance_partner.username %> </h3>
+  <h3> <%= "#{@balance_status[:message]} #{@balance_status[:value]}" %> </h3>

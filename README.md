@@ -25,6 +25,7 @@ borrow money - if another input is incorrect - nothing, input correct, but no 'i
 - Further changes:    
     - New: Make fields work properly
     - searchbar for users and balances
+    - Navbar: highlight My Balances tab, when on page: balance/id
 
 ## Known issues suspended for now:
 - gem sass is deprecated, therefore need for sassc and rails-sassc
