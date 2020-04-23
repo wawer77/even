@@ -11,7 +11,19 @@ class TransactionsController < ApplicationController
   
     def create
       @transaction = Transaction.new(transaction_params)
+      @current_user_balances = current_user.balances
       @transaction.issuer_id = current_user.id
+      @partner_id = @transaction.receiver_id
+      @balance_name = @transaction.balance_name
+      
+      #pry
+      @new_balance = @current_user_balances.joins(:users).where(name: @balance_name, users: { id: @partner_id}).first_or_create do |balance| 
+        balance.name = @balance_name
+        balance.partner_id = @partner_id
+      end
+
+      #one last issue is first_or_create not passing partner_id to create
+
       if @transaction.save
         redirect_to @transaction, notice: "Your transaction was created successfully!"
       else
@@ -35,7 +47,7 @@ class TransactionsController < ApplicationController
     private
   
     def transaction_params
-      params.require(:transaction).permit(:description, :value , :issuer_id, :receiver_id, :send_money, :balance_id)
+      params.require(:transaction).permit(:description, :value , :issuer_id, :receiver_id, :send_money, :balance_name)
     end
   
  end

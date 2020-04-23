@@ -10,6 +10,7 @@
     <br />
     <%= f.input :description, label: "Description:", placeholder: "Describe the transaction" %>
     <%= f.input :receiver_id, label: "Receiver:", placeholder: "Provide the transaction's receiver ID"  %>
+    <%= f.input :balance_name, label: "Balance:", placeholder: "Provide balance name or leave empty to add transaction to the Main balance with user"  %>
     <%= f.input :send_money, label: "Transaction type:",  as: :radio_buttons, collection: [['I lend the money', '1'], ['I borrow the money', '0']] %>
     <%= f.input :value, label: "Value:", placeholder: "Provide the value" %>    
     <hr />  

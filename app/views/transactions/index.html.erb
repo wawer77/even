@@ -4,6 +4,7 @@
   <div>
     <h3> Name: <%= link_to "#{transaction.id}", transaction_path(transaction) %>  </h3>
     <p> ID: <%= transaction.id %> </p>
+    <p> Description: <%= transaction.description %> </p>
     <p> With user: <%# otheruser(transaction) %> </p>
     <p> Status: <%# situation(transaction) %> </p>
   </div>

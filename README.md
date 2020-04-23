@@ -2,6 +2,9 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
+
+-Borrow the money option in transaction rejects the input as invalid
+
 - Modify the DB as in the mermaid preview
 - use simple form + form fixes
   - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'

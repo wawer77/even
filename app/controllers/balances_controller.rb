@@ -15,8 +15,9 @@ class BalancesController < ApplicationController
   
     def create
       @balance = Balance.new(balance_params)
-      @partner = User.where(id: @balance.partner_id)
+      @partner = User.find(@balance.partner_id)
       @balance.users << [current_user, @partner]
+      #Shouldn't the line above be in the block below?
       if @balance.save
         redirect_to @balance, notice: "Your balance was created successfully!"
       else
