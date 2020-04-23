@@ -3,7 +3,9 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
--Borrow the money option in transaction rejects the input as invalid
+-Transaction creation:
+lend money - if another input is incorrect - this is as 'is-valid' in html and green;
+borrow money - if another input is incorrect - nothing, input correct, but no 'is-valid' div class
 
 - Modify the DB as in the mermaid preview
 - use simple form + form fixes
