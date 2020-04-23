@@ -17,10 +17,12 @@ class TransactionsController < ApplicationController
       @balance_name = @transaction.balance_name
       
       #pry
-      @new_balance = @current_user_balances.joins(:users).where(name: @balance_name, users: { id: @partner_id}).first_or_create do |balance| 
+      @balance = @current_user_balances.joins(:users).where(name: @balance_name, users: { id: @partner_id}).first_or_create do |balance| 
         balance.name = @balance_name
         balance.partner_id = @partner_id
       end
+      
+      @transaction.balance_id = @balance.id
 
       #one last issue is first_or_create not passing partner_id to create
 
