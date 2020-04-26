@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
     def index
         @issued_transactions = Transaction.where(issuer_id: current_user.id)
         @received_transactions = Transaction.where(receiver_id: current_user.id)
-        @transactions = @issued_transactions + @received_transactions
+        @transactions = (@issued_transactions + @received_transactions).sort_by{|t| t[:created_at]}.reverse
     end
   
     def new
