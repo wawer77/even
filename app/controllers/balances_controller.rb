@@ -15,10 +15,13 @@ class BalancesController < ApplicationController
 
   def create
     @balance = Balance.new(balance_params)
+    @balance.creator_id = current_user.id
+    @creator = User.find(@balance.creator_id)
     @partner = User.find(@balance.partner_id)
-    @balance.users << [current_user, @partner]
     #Shouldn't the line above be in the block below?
     if @balance.save
+      @balance.users << [@creator, @partner]
+      pry
       redirect_to @balance, notice: "Your balance was created successfully!"
     else
       render :new
@@ -73,6 +76,6 @@ class BalancesController < ApplicationController
   private
 
   def balance_params
-    params.require(:balance).permit(:name, :description, :partner_id)
+    params.require(:balance).permit(:name, :description, :partner_id, :creator_id)
   end
 end

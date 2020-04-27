@@ -11,4 +11,7 @@ class Balance < ApplicationRecord
         Transaction.where(balance_id: self.id)
     end
 
+    def creator
+        User.find(self.creator_id)
+    end
 end
