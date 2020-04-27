@@ -6,7 +6,14 @@ class User < ApplicationRecord
          
   validates_presence_of :first_name, :last_name, :username
 
-  has_many :issued_transactions, as: :issuer, class_name: 'Transaction'
-  has_many :received_transactions, as: :receiver, class_name: 'Transaction' 
+  has_many :transactions
   has_and_belongs_to_many :balances
+
+  def issued_transactions
+      Transaction.where(issuer_id: self.id)
+  end
+
+  def received_transactions
+      Transaction.where(receiver_id: self.id)
+  end
 end
