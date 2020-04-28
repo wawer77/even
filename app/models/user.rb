@@ -6,14 +6,12 @@ class User < ApplicationRecord
          
   validates_presence_of :first_name, :last_name, :username
 
-  has_many :transactions
+  has_many :issued_transactions, foreign_key: :issuer, class_name: 'Transaction'
+  has_many :received_transactions, foreign_key: :receiver, class_name: 'Transaction' 
   has_and_belongs_to_many :balances
 
-  def issued_transactions
-      Transaction.where(issuer_id: self.id)
-  end
-
-  def received_transactions
-      Transaction.where(receiver_id: self.id)
-  end
+  ####### This method is defined as couldn't extend the relation to get transactions including both types; This reutrn an array instead of Relation anyway (so cannot .where it)
+  def transactions
+    Transaction.where( 'issuer_id = :id OR receiver_id = :id', id: "#{ self.id }" )
+  end 
 end
