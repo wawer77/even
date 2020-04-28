@@ -1,6 +1,15 @@
-<h2>Balance</h2><br>
+<h2>Balance <i><%= @balance.name %></i></h2><br>
 
 <div>
-  <h3> Name: <%= @balance.name %> </h3>
-  <h3> With user: <%= @balance_partner.username %> </h3>
-  <h3> <%= "#{@balance_status[:message]} #{@balance_status[:value]}" %> </h3>
+  <p> <b>With user:</b> <%= @balance_partner.username %> </p>
+  <p> <b><%= "#{@balance_status[:message]}" %></b> <%= "#{@balance_status[:value]}" %> </p>
+</div>
+<hr class="my-4">
+<div>
+  <h3>Balance History:</h3>
+  <% @transactions.each do |transaction| %>
+    <div>
+      
+    </div>  
+  <% end %>
+</div>

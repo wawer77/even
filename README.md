@@ -3,24 +3,22 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
+- Continue adding transactions to balance show view
+
 - Add logics for:
-  - my trasactions
   - transaction with users
   - transactions grouped into balances
-  - my balance values with other users
+
+- Add transaction to balance button in balance with predefined transaction.balance_id  
 
 - Transaction creation:
-lend money - if another input is incorrect - this is as 'is-valid' in html and green;
-borrow money - if another input is incorrect - nothing, input correct, but no 'is-valid' div class
+  lend money - if another input is incorrect - this is as 'is-valid' in html and green;
+  borrow money - if another input is incorrect - nothing, input correct, but no 'is-valid' div class
 
 - use simple form + form fixes
   - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
   - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
     - Doesn't check for . after @ - add it
-
-- User.issued_transactions
-      - SELECT COUNT(*) FROM "transactions" WHERE "transactions"."issuer_id" = $1 AND "transactions"."issuer_type" = $2  [["issuer_id", 1], ["issuer_type", "User"]]
-      ActiveRecord::StatementInvalid: PG::InFailedSqlTransaction: ERROR:  current transaction is aborted, commands ignored until end of transaction block  
 
 - Further changes:    
     - New: Make fields work properly

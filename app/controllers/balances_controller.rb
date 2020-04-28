@@ -33,6 +33,7 @@ class BalancesController < ApplicationController
     @balance = Balance.find(params[:id])
     @balance_partner = @balance.partner_for(current_user)
     @balance_status = balance_status(@balance, current_user)
+    @transactions = @balance.transactions
   end
 
   def edit
