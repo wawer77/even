@@ -27,47 +27,11 @@ class BalancesController < ApplicationController
     end
   end
 
+
   def show
     @balance = Balance.find(params[:id])
     @balance_partner = @balance.partner_for(current_user)
-    @balance_transactions = @balance.transactions
-
-    #####lending transactions:
-    @current_user_lending_transactions = @balance_transactions.where(["issuer_id = ? and send_money = ?", current_user.id, 'true']) + @balance_transactions.where(["issuer_id = ? and send_money = ?", @balance_partner.id, 'false'])
-
-    @current_user_lended_value = 0
-    @current_user_lending_transactions.each do |transaction|
-      @current_user_lended_value += transaction.value
-    end
-    
-    #####borrowing transactions:
-    @current_user_borrowing_transactions = @balance_transactions.where(["issuer_id = ? and send_money = ?", current_user.id, 'false']) + @balance_transactions.where(["issuer_id = ? and send_money = ?", @balance_partner.id, 'true'])
-
-    @current_user_borrowed_value = 0
-    @current_user_borrowing_transactions.each do |transaction|
-      @current_user_borrowed_value += transaction.value
-    end
-
-    #####balance satus:
-    if @current_user_lended_value > @current_user_borrowed_value
-      @balance_status = { 
-        status: "lending",
-        value: @current_user_lended_value - @current_user_borrowed_value, 
-        message: "You lended: " 
-      }
-    elsif @current_user_lended_value < @current_user_borrowed_value
-      @balance_status = { 
-        status: "owing", 
-        value: @current_user_borrowed_value - @current_user_lended_value,
-        message: "You owe: " 
-      }
-    else
-      @balance_status = { 
-        status: "even", 
-        value: nil, 
-        message: "You are even!" 
-    }
-    end
+    @balance_status = balance_status(@balance, current_user)
   end
 
   def edit
@@ -80,8 +44,58 @@ class BalancesController < ApplicationController
   end
 
   private
-
+  
   def balance_params
     params.require(:balance).permit(:name, :description, :partner_id, :creator_id)
+  end
+
+  def lending_transactions(balance, user)
+    partner = balance.partner_for(user)
+    balance.transactions.where(["issuer_id = ? and send_money = ?", user.id, 'true']) + balance.transactions.where(["issuer_id = ? and send_money = ?", partner, 'false'])
+  end
+
+  def borrowing_transactions(balance,user)
+    partner = balance.partner_for(user)
+    balance.transactions.where(["issuer_id = ? and send_money = ?", user.id, 'false']) + balance.transactions.where(["issuer_id = ? and send_money = ?", partner.id, 'true'])
+  end
+
+  def lended_value(balance, user)
+    lended_value = 0
+    lending_transactions(balance, user).each do |transaction|
+      lended_value += transaction.value   
+    end
+    lended_value
+  end
+  
+  def borrowed_value(balance, user)
+    borrowed_value = 0
+    borrowing_transactions(balance, user).each do |transaction|
+      borrowed_value += transaction.value   
+    end
+    borrowed_value
+  end
+
+  def balance_status(balance, user)
+    lended_value = lended_value(balance, user)
+    borrowed_value = borrowed_value(balance, user)
+    if lended_value > borrowed_value
+      balance_status = { 
+        status: "lending",
+        value: lended_value - borrowed_value, 
+        message: "You lended: " 
+      }
+    elsif lended_value < borrowed_value
+      balance_status = { 
+        status: "owing", 
+        value: borrowed_value - lended_value,
+        message: "You owe: " 
+      }
+    else
+      balance_status = { 
+        status: "even", 
+        value: nil, 
+        message: "You are even!" 
+    }
+    end
   end
 end
