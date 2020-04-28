@@ -4,7 +4,8 @@ class BalancesController < ApplicationController
       current_user.balances.each do |balance|
         @output << {
           balance: balance,
-          partner: balance.partner_for(current_user)
+          partner: balance.partner_for(current_user),
+          status: balance_status(balance, current_user)
         }
       end
   end

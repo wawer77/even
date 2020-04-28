@@ -1,10 +1,9 @@
-
 <div>
   <% @output.each do |output| %>
   <div>
     <h3> Name: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>  </h3>
-    <p> With user: <%= output[:partner].username %> </p>
-    <p> Status: <%# situation(current_user_balance) %> </p>
+    <p> <b>With user:</b> <%= output[:partner].username %> </p>
+    <p> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </p>
   </div>
   <hr class="my-4">
   <% end %>
