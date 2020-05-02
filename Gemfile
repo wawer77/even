@@ -15,7 +15,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 #Added gems
 gem 'simple_form'
-gem 'bootstrap', '>= 4.3.1'
+gem 'bootstrap', '>= 4.4.1'
 gem 'devise', '>= 4.7.1'
 gem 'gritter', '~> 1.2'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
