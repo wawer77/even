@@ -1,5 +1,10 @@
 <h2>Transaction</h2>
-
-<div>
-  <%= @transaction %>%
-<div>
+  <div>
+    <%= "Balance: #{@transaction.balance.name} with user #{@transaction.partner_for(current_user).username}" %><br>
+    <%= @transaction.transaction_message(current_user) %><br>
+    <%= "Description:" %> 
+    <i><%= "#{@transaction.description}" %> </i><br>
+    <%= @transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> 
+    <%= "by #{@transaction.issuer.username}" %> 
+    <hr>
+  </div>  
