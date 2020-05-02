@@ -3,7 +3,7 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Continue adding transactions to balance show view
+- Continue with transaction show
 
 - Add logics for:
   - transaction with users
@@ -19,6 +19,8 @@ To stay even with your friends.
   - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
   - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
     - Doesn't check for . after @ - add it
+
+- make bootstrap icons working
 
 - Further changes:    
     - New: Make fields work properly

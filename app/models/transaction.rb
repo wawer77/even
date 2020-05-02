@@ -5,6 +5,7 @@ class Transaction < ApplicationRecord
 
     belongs_to :issuer, class_name: 'User'
     belongs_to :receiver, class_name: 'User'
+    belongs_to :balance#, foreign_key: :balance, class_name: 'Balance' 
 
     ##### These methods are used, as couldn't extend the relation to simply users - including both issuer and receiver
     def users
@@ -14,11 +15,11 @@ class Transaction < ApplicationRecord
     end
 
     def partner_for(user)
-        partner_arr = self.users - [user]
-        partner_arr.first
+        partner_array = self.users - [user]
+        partner_array.first
     end
     ###############
-
+    
     def lending_transaction?(user)
         partner = self.partner_for(user)
         if (self.issuer_id == user.id && self.send_money == true) || (self.issuer_id == partner.id && self.send_money == false)
@@ -35,4 +36,12 @@ class Transaction < ApplicationRecord
             true
         end
     end
+
+    def transaction_message(user)
+        if self.lending_transaction?(user)
+            "You lended: #{self.value}"
+        else
+            "You borrowed: #{self.value}"
+        end
+    end 
 end

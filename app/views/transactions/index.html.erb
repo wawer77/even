@@ -1,12 +1,16 @@
 
 <div>
-  <% @transactions.each do |transaction| %>
-  <div>
-    <h3> Name: <%= link_to "#{transaction.id}", transaction_path(transaction) %>  </h3>
-    <p> Description: <%= transaction.description %> </p>
-    <p> With user: <%# otheruser(transaction) %> </p>
-    <p> Status: <%# situation(transaction) %> </p>
-  </div>
-  <hr class="my-4">
+  <% @output.each do |output| %>
+    <%= link_to transaction_path(output[:transaction]) do %>
+      <div>
+        <%= "#{output[:balance_name]} with user #{output[:balance_partner].username}" %><br>
+        <%= output[:message] %><br>
+        <%= "Description:" %> 
+        <i><%= "#{output[:description]}" %> </i><br>
+        <%= output[:creation_date] %> 
+        <%= "by #{partner_or_current_user(output[:issuer])}" %> 
+        <hr>
+      </div>
+    <% end %>  
   <% end %>
 </div>
