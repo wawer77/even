@@ -1,6 +1,6 @@
 class BalancesController < ApplicationController
   def index
-      @output = Array.new
+      @output = []
       current_user.balances.each do |balance|
         @output << {
           balance: balance,
@@ -33,7 +33,7 @@ class BalancesController < ApplicationController
     @balance = Balance.find(params[:id])
     @balance_partner = @balance.partner_for(current_user)
     @balance_status = balance_status(@balance, current_user)
-    @transactions = @balance.transactions
+    @transactions = @balance.transactions.sort_by{|t| t[:created_at]}.reverse.each
   end
 
   def edit

@@ -6,10 +6,15 @@
 </div>
 <hr class="my-4">
 <div>
-  <h3>Balance History:</h3>
+  <h3>Balance History:</h3><br>
   <% @transactions.each do |transaction| %>
     <div>
-      
+      <%= transaction.transaction_message(current_user) %><br>
+      <%= "Description:" %> 
+      <i><%= "#{transaction.description}" %> </i><br>
+      <%= transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> 
+      <%= "by #{transaction.issuer.username}" %> 
+      <hr>
     </div>  
   <% end %>
 </div>

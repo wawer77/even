@@ -2,6 +2,7 @@ class Balance < ApplicationRecord
     attr_accessor :partner_id
     has_and_belongs_to_many :users
     validates_presence_of :name, :partner_id
+    #has_many :transactions - try to make it work?
 
     def partner_for(user)
         self.users.where.not(id: user.id).first
