@@ -1,16 +1,15 @@
 
 <div>
-  <% @output.each do |output| %>
-    <%= link_to transaction_path(output[:transaction]) do %>
+  <% @output.to_enum.with_index(1).reverse_each do |output, index| %>
       <div>
-        <%= "#{output[:balance_name]} with user #{output[:balance_partner].username}" %><br>
+        <h5> <%= link_to "Transaction #{index} ", transaction_path(output[:transaction]) %>  </h5>  
+        <a>Balance: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %> <%= "with user #{output[:balance_partner].username}" %></a><br>
         <%= output[:message] %><br>
         <%= "Description:" %> 
         <i><%= "#{output[:description]}" %> </i><br>
         <%= output[:creation_date] %> 
         <%= "by #{partner_or_current_user(output[:issuer])}" %> 
         <hr>
-      </div>
-    <% end %>  
+      </div> 
   <% end %>
 </div>

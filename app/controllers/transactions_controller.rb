@@ -1,11 +1,11 @@
 class TransactionsController < ApplicationController
     def index
-        @transactions = (current_user.issued_transactions + current_user.received_transactions).sort_by{|t| t[:created_at]}.reverse
+        @transactions = (current_user.issued_transactions + current_user.received_transactions)
         @output = []
         @transactions.each do |transaction|
           @output << {
             transaction: transaction,
-            balance_name: transaction.balance.name,
+            balance: transaction.balance,
             balance_partner: transaction.balance.partner_for(current_user),
             message: transaction.transaction_message(current_user),
             description: transaction.description,
