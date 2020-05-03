@@ -2,8 +2,10 @@
   <% @output.each do |output| %>
   <div>
     <h3> Name: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>  </h3>
-    <p> <b>With user:</b> <%= output[:partner].username %> </p>
-    <p> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </p>
+    <a> <b>With user:</b> <%= output[:partner].username %> </a><br>
+    <a> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </a><br>
+     <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> 
+    <%= "by #{output[:creator].username}" %>  </a><br>
   </div>
   <hr class="my-4">
   <% end %>
