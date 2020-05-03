@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
     def index
-        @transactions = (current_user.issued_transactions + current_user.received_transactions)
+        @transactions = (current_user.issued_transactions + current_user.received_transactions).sort_by{|t| t[:created_at]}
         @output = []
         @transactions.each do |transaction|
           @output << {
@@ -21,23 +21,24 @@ class TransactionsController < ApplicationController
   
     def create
       @transaction = Transaction.new(transaction_params)
-      @current_user_balances = current_user.balances
       @transaction.issuer_id = current_user.id
-      @partner_id = @transaction.receiver_id
+      @partner = User.find(@transaction.receiver_id)
+      @users = [current_user, @partner]
       @balance_name = @transaction.balance_name
+      @current_user_balances = current_user.balances
       
-      #pry
-      @balance = @current_user_balances.joins(:users).where(name: @balance_name, users: { id: @partner_id}).first_or_create do |balance| 
-        balance.name = @balance_name
-        balance.partner_id = @partner_id
+      @balance = @current_user_balances.joins(:users).where(name: @balance_name, users: { id: @partner.id}).first_or_create do |balance| 
+        @users.each do |user|  
+          balance.name = @balance_name
+          balance.partner_id = @partner.id
+          balance.creator_id = current_user.id
+          balance.users = [user]
+        end
       end
       
       @transaction.balance_id = @balance.id
-
-      #one last issue is first_or_create not passing partner_id to create
-
       if @transaction.save
-        redirect_to @transaction, notice: "Your transaction was created successfully!"
+        redirect_to @balance, notice: "Your transaction was created successfully!"
       else
         render :new
       end
