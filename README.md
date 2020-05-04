@@ -3,11 +3,11 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- User show
-- transaction with user
-- transactions grouped into balances?
+- Do not make link if the user is "you"
 
-- Add transaction to balance button in balance with predefined transaction.balance_id
+- 'Add transaction to balance' button in balance with predefined transaction.balance_id
+
+- 'Create Balance' button in user show
 
 - Add feature of default balance when User added to friends(?)
 
