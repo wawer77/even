@@ -5,6 +5,6 @@
     <%= "Description:" %> 
     <i><%= "#{@transaction.description}" %> </i><br>
     <%= @transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> 
-    <a> by <%= link_to "#{@transaction.issuer.username}",user_path(@transaction.issuer.id) %> 
+    <a> by <%= link_to "#{partner_or_current_user(@transaction.issuer)}",user_path(@transaction.issuer.id) %> 
     <hr>
   </div>  
