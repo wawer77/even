@@ -1,0 +1,36 @@
+<h2><%= @user.username %></h2>
+  <div>
+    <h5><%= "#{@user.first_name} #{@user.last_name}" %></h5>
+    <a> <%= @user.created_at.strftime(" Joined on: %-d %B %Y ")%> </a>
+    
+    
+    <hr>
+    <br>
+    <% if @user != current_user %>
+      <h3> Your balances with <%="#{@user.username}:" %> </h3><br>
+        <% @balances_output.each do |output| %>
+          <div>
+            <h5> Balance: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>  </h5>
+            <a> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </a><br>
+            <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> 
+            <%= "by #{output[:creator].username}" %>  </a><br>
+          </div>
+          <hr>
+        <% end %>
+      <br>
+      <h3> Your transactions with <%="#{@user.username}:" %> </h3><br>
+      <% @transactions_output.to_enum.with_index(1).reverse_each do |transactions_output, index| %>
+        <div>
+          <h5> <%= link_to "Transaction #{index} ", transaction_path(transactions_output[:transaction]) %>  </h5>  
+          <a>Balance: <%= link_to "#{transactions_output[:balance].name}", balance_path(transactions_output[:balance]) %></a><br>
+          <%= transactions_output[:message] %><br>
+          <%= "Description:" %> 
+          <i><%= "#{transactions_output[:description]}" %> </i><br>
+          <%= transactions_output[:creation_date] %> 
+          <%= "by #{partner_or_current_user(transactions_output[:issuer])}" %> 
+          <hr>
+        </div> 
+      <% end %>
+    <% else %>
+    <% end %>
+  </div>  
