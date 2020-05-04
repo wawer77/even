@@ -1,18 +1,7 @@
 class TransactionsController < ApplicationController
     def index
         @transactions = (current_user.issued_transactions + current_user.received_transactions).sort_by{|t| t[:created_at]}
-        @output = []
-        @transactions.each do |transaction|
-          @output << {
-            transaction: transaction,
-            balance: transaction.balance,
-            balance_partner: transaction.balance.partner_for(current_user),
-            message: transaction.transaction_message(current_user),
-            description: transaction.description,
-            creation_date: transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M"),
-            issuer: transaction.issuer
-          }
-        end
+        @output = transactions_output(@transactions, current_user)
     end
   
     def new
