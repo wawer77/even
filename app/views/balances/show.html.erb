@@ -1,6 +1,6 @@
 <h2>Balance <i><%= @balance.name %></i></h2>
 <div>
-  <p> <b>With user:</b> <%= @balance_partner.username %> </p>
+  <p> <b>With user:</b> <%= link_to "#{@balance_partner.username}", user_path(@balance_partner.id) %> </p>
   <h4> <b><%= "#{@balance_status[:message]}" %></b> <%= "#{@balance_status[:value]}" %> </h4>
 </div>
 <hr class="my-4">
@@ -14,8 +14,7 @@
         <%= transaction.transaction_message(current_user) %><br>
         <%= "Description:" %> 
         <i><%= "#{transaction.description}" %> </i><br>
-        <%= transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> 
-        <%= "by #{transaction.issuer.username}" %> 
+        <%= transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by <%= link_to "#{partner_or_current_user(transaction.issuer)}", user_path(transaction.issuer.id) %> 
         <hr>
       </div>  
     <% end %>
