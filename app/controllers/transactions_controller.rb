@@ -6,6 +6,7 @@ class TransactionsController < ApplicationController
   
     def new
       @transaction = Transaction.new
+      @transaction.balance_name = params[:balance_name]
     end
   
     def create

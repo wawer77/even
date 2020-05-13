@@ -2,8 +2,11 @@
 <div>
   <p> <b>With user:</b> <%= link_to "#{@balance_partner.username}", user_path(@balance_partner.id) %> </p>
   <h4> <b><%= "#{@balance_status[:message]}" %></b> <%= "#{@balance_status[:value]}" %> </h4>
+  <%= link_to "Add transaction", new_transaction_path(:balance_name => @balance.name), class: 'btn btn-primary' %>
 </div>
+
 <hr class="my-4">
+
 <div>
   <h3>Balance History:</h3><br>
   <% @transactions.to_enum.with_index(1).reverse_each do |transaction, index| %>
