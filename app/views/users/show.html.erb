@@ -1,8 +1,9 @@
 <h2><%= @user.username %></h2>
   <div>
     <h5><%= "#{@user.first_name} #{@user.last_name}" %></h5>
-    <a> <%= @user.created_at.strftime(" Joined on: %-d %B %Y ")%> </a>
-    
+    <a> <%= @user.created_at.strftime(" Joined on: %-d %B %Y ")%> </a><br><br>
+    <%= link_to "Create new Balance", new_balance_path(:partner_id => @user.id), class: 'btn btn-primary' %>
+
     
     <hr>
     <br>

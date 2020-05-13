@@ -6,6 +6,7 @@ class BalancesController < ApplicationController
 
   def new
     @balance = Balance.new
+    @balance.partner_id = params[:partner_id]
   end
 
   def create
