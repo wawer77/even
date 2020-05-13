@@ -3,9 +3,7 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- 'Add transaction to balance' button in balance with predefined transaction.balance_id
-
-- 'Create Balance' button in user show
+- Resolve Transaction validation problem
 
 - Add feature of default balance when User added to friends(?)
 
