@@ -12,8 +12,8 @@
           <div>
             <h5> Balance: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>  </h5>
             <a> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </a><br>
-            <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> 
-            <%= "by #{output[:creator].username}" %>  </a><br>
+            <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by
+            <%= viewer_or_partner(current_user, output[:creator]) %>  </a><br>
           </div>
           <hr>
         <% end %>
@@ -26,8 +26,8 @@
           <%= transactions_output[:message] %><br>
           <%= "Description:" %> 
           <i><%= "#{transactions_output[:description]}" %> </i><br>
-          <%= transactions_output[:creation_date] %> 
-          <%= "by #{partner_or_current_user(transactions_output[:issuer])}" %> 
+          <%= transactions_output[:creation_date] %> by
+          <%= viewer_or_partner(current_user, transactions_output[:issuer]) %> 
           <hr>
         </div> 
       <% end %>

@@ -14,7 +14,7 @@
         <%= transaction.transaction_message(current_user) %><br>
         <%= "Description:" %> 
         <i><%= "#{transaction.description}" %> </i><br>
-        <%= transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by <%= link_to "#{partner_or_current_user(transaction.issuer)}", user_path(transaction.issuer.id) %> 
+        <%= transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by <%= viewer_or_partner(current_user,transaction.issuer) %> 
         <hr>
       </div>  
     <% end %>

@@ -3,8 +3,6 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Do not make link if the user is "you"
-
 - 'Add transaction to balance' button in balance with predefined transaction.balance_id
 
 - 'Create Balance' button in user show

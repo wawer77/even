@@ -4,7 +4,7 @@
     <h3> Name: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>  </h3>
     <a> <b>With user:</b> <%= link_to "#{output[:partner].username}", user_path(output[:partner].id) %> </a><br>
     <a> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </a><br>
-     <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by <%= link_to "#{partner_or_current_user(output[:creator])}", user_path(output[:creator].id) %>  </a><br>
+     <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by <%= viewer_or_partner(current_user, output[:creator]) %>  </a><br>
   </div>
   <hr class="my-4">
   <% end %>

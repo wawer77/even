@@ -8,7 +8,7 @@
         <%= "Description:" %> 
         <i><%= "#{output[:description]}" %> </i><br>
         <%= output[:creation_date] %> 
-        <a> by <%= link_to "#{partner_or_current_user(output[:issuer])}", user_path(output[:issuer].id) %> </a>
+        <a> by <%= viewer_or_partner(current_user, output[:issuer]) %> </a>
         <hr>
       </div> 
   <% end %>
