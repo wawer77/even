@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :issued_transactions, foreign_key: :issuer, class_name: 'Transaction'
   has_many :received_transactions, foreign_key: :receiver, class_name: 'Transaction' 
   has_and_belongs_to_many :balances
+
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+
   #has_many :transactions, ->(user) { where("issuer_id = ? OR receiver_id = ?", user.id, user.id) }
   #not working as it cheks for transactions WHERE user_ud = user.id AND the conditions above
   #https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord%3a%3aAssociations%3a%3aClassMethods-label-Customizing+the+query
