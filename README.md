@@ -2,10 +2,9 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
+- Continue with Friendship confrimation 
 
 - Resolve Transaction validation problem
-
-- Add feature of default balance when User added to friends(?)
 
 - pagination for transactions index (with filtering by user/balance)
 
