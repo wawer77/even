@@ -2,7 +2,9 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
-- Continue with Friendship confrimation 
+- Friend views with confirmation
+
+- Add a default Main Balance after adding a friend
 
 - Resolve Transaction validation problem
 
@@ -10,21 +12,23 @@ To stay even with your friends.
 
 - Figure out: what to do in case of Balance deletion? - because those transactions will be visible - do we push them to Default balance or make status field(?) or keep the balance as 'closed' and then transactions are as historic and available thru some 'historic' filter in Transaction index (could be the best soultion - only Balances with 0 transactions could be deleted then, which makes sense); in addition - only even Balances could be set as closed
 
-- Transaction creation:
-  lend money - if another input is incorrect - this is as 'is-valid' in html and green;
-  borrow money - if another input is incorrect - nothing, input correct, but no 'is-valid' div class
+- Minor:
 
-- use simple form + form fixes
-  - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
-  - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
-    - Doesn't check for . after @ - add it
+  - Transaction creation:
+    lend money - if another input is incorrect - this is as 'is-valid' in html and green;
+    borrow money - if another input is incorrect - nothing, input correct, but no 'is-valid' div class
 
-- make bootstrap icons working
+  - use simple form + form fixes
+    - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
+    - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
+      - Doesn't check for . after @ - add it
 
-- Further changes:    
-    - New: Make fields work properly
-    - searchbar for users and balances
-    - Navbar: highlight My Balances tab, when on page: balance/id
+  - make bootstrap icons working
+
+  - Further changes:    
+      - New: Make fields work properly
+      - searchbar for users and balances
+      - Navbar: highlight My Balances tab, when on page: balance/id
 
 ## Known issues suspended for now:
 - gem sass is deprecated, therefore need for sassc and rails-sassc?
