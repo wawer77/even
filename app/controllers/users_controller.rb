@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     end
 
     private  
+    # TODO - into transactions model? and rename to _between
     def transactions_with(user, partner)
         user.transactions.where(issuer_id: partner.id) + user.transactions.where(receiver_id: partner.id)
     end

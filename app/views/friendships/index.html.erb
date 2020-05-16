@@ -1,0 +1,58 @@
+<h2>Friends</h2>
+<br>
+
+<% if @received_invitations.empty? && @sent_invitations.empty? && @friends.empty? %>
+  <h4>Add some friends, mate!<h4>
+<% end %>
+
+<% if @received_invitations.present? %>
+  <h3>Received invitations:</h3>
+  <div>
+    <% @inviting_users.each do |user|%>
+      <tr>
+        <td>
+          <b><%= link_to "#{user.username}", user_path(user.id) %></b>
+        </td>
+        <td>
+          <%= render 'buttons', user: user %>
+        </td>
+      </tr>
+    <% end %>
+  </div>
+  <hr>
+<% end %>
+
+<% if @sent_invitations.present? %>
+  <h3>Sent invitations:</h3>
+  <div>
+    <% @invited_users.each do |user|%>
+      <tr>
+        <td>
+          <b><%= link_to "#{user.username}", user_path(user.id) %></b>
+        </td>
+        <td>
+          <%= render 'buttons', user: user %>
+        </td>
+      </tr>
+    <% end %>
+  </div>
+  <hr>
+<% end %>
+
+
+<% if @friends.present? %>
+  <h3>Friends list:</h3>
+  <div>
+    <% @friends.each do |user|%>
+      <tr>
+        <td>
+          <b><%= link_to "#{user.username}", user_path(user.id) %></b>
+        </td>
+        <td>
+          <%= render 'buttons', user: user %>
+        </td>
+      </tr>
+    <% end %>
+  </div>
+  <hr>
+<% end %>
