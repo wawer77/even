@@ -10,6 +10,7 @@ class TransactionsController < ApplicationController
     end
   
     def create
+      # TODO - maybe try to move it to model?
       @transaction = Transaction.new(transaction_params)
       @transaction.issuer_id = current_user.id
       @partner = User.find(@transaction.receiver_id)

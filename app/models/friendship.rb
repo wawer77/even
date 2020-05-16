@@ -26,4 +26,8 @@ class Friendship < ApplicationRecord
             invitor_friendship.confirmed!
         end
     end
+    
+  def reverse_friendship
+    Friendship.where(user_id: self.friend_id, friend_id: self.user_id)
+  end
 end

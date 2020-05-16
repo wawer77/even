@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(root_path)
   end
-
+  
+  # TODO - will go to service object later balances & transactions (together, separately?)
   def transactions_output(transactions, user)
     output = []
     transactions.each do |transaction|
@@ -46,7 +47,6 @@ class ApplicationController < ActionController::Base
     output
   end
 
-   ##### will go to service object later
    def lending_transactions(balance, user)
     partner = balance.partner_for(user)
     balance.transactions.where(["issuer_id = ? and send_money = ?", user.id, 'true']) + balance.transactions.where(["issuer_id = ? and send_money = ?", partner, 'false'])
