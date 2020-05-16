@@ -2,9 +2,13 @@
 To stay even with your friends.
 
 ## CURRENT TO DO:
-- Friend views with confirmation
 
 - Add a default Main Balance after adding a friend
+
+- prevent from deleting friends before getting even with them
+  -to get it - make a summary of all balances too see if even or not 
+
+- add authorization
 
 - Resolve Transaction validation problem
 
