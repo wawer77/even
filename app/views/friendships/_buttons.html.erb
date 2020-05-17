@@ -4,7 +4,7 @@
 <% elsif current_user.invitation_sent_to(user) %>
   <%= button_to "Invitation sent", user_path(user), class: 'btn btn-primary btn-green', disabled: 'true' %>
 <% elsif current_user.invitation_received_from(user) %>
-  <%= link_to "Confirm friend request", confirm_friendship_path(current_user.invitation_received_from(user), :page_source=>user), class: 'btn btn-primary btn-green' %>
+  <%= link_to "Confirm friend request", confirm_friendship_path(current_user.invitation_received_from(user)), class: 'btn btn-primary btn-green' %>
   <%= link_to "Ignore friend request", friendship_path(current_user.friendship_with(user), friend_id: user.id), :method => :delete, class: 'btn btn-primary btn-orange' %>
 <% else %>
   <%= link_to "Send friend request", friendships_path(friend_id: user.id), :method => :post, class: 'btn btn-primary' %>

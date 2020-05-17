@@ -1,7 +1,4 @@
 {
-    "editor.wordWrap": "on"
-}
-
-"files.associations": {
-  "*.erb": "erb"
+    "editor.wordWrap": "on",
+   //"files.associations": { "*.erb": "erb" }
 }
