@@ -21,6 +21,9 @@ class FriendshipsController < ApplicationController
     def confirm
         friendship = Friendship.find(params[:id])
         friendship.confirm_reverse_friendships
+        @friend = User.find(friendship.friend_id)
+        @balance = Balance.create(creator_id: current_user.id, partner_id: @friend.id, name: "Default #{current_user.username} - #{@friend.username}", description: "This is a default-created Balance after adding a friend" )
+        @balance.users << [current_user, @friend]
         redirect_back fallback_location: '/'
     end
 end
