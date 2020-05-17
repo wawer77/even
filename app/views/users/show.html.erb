@@ -6,12 +6,15 @@
 <div>
   <% if @user != current_user %>
 
+  <h4>Your overall status with the user:<br><%= "#{@overall_status[:message]} #{@overall_status[:value]}" %></h4>
+  <br>
+  
   <%= render 'friendships/buttons', user: @user %>
   <br>
 
   <%= link_to "Create new Balance", new_balance_path(:partner_id => @user.id), class: 'btn btn-primary' %>
   <hr><br>
-
+  
     <h3> Your balances with <%="#{@user.username}:" %> </h3><br>
       <% @balances_output.each do |output| %>
         <div>
