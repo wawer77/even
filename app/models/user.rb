@@ -33,6 +33,10 @@ class User < ApplicationRecord
     self.transactions.where('issuer_id = :id OR receiver_id = :id', id: "#{ user.id }")
   end 
 
+  def balances_with(user)
+    self.transactions.collect(&:balance).uniq.sort
+  end
+
   def friends_with?(user)
     true if self.friends.include?(user)
   end
