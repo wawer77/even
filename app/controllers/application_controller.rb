@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
   #  borrowed_value
   #end
   
-  # TODO - refactor - to be moved to Balance model?
+  # TODO - refactor - to be moved to Balance model? // or service object?
   def balance_status(balance, user)
     lended_value = user.lended_value(balance)
     borrowed_value = user.borrowed_value(balance)
@@ -99,4 +99,11 @@ class ApplicationController < ActionController::Base
       }
     end
   end
+
+  #TODO refactor
+  def overall_status_with(user)
+    balances = current_user.balances_with(user)
+    balance_status(balances, current_user)
+  end
+
 end
