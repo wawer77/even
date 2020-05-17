@@ -28,6 +28,10 @@ class User < ApplicationRecord
   def transactions
     Transaction.where( 'issuer_id = :id OR receiver_id = :id', id: "#{ self.id }" )
   end 
+ 
+  def transactions_with(user)
+    self.transactions.where('issuer_id = :id OR receiver_id = :id', id: "#{ user.id }")
+  end 
 
   def friends_with?(user)
     true if self.friends.include?(user)
