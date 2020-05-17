@@ -14,8 +14,13 @@ class FriendshipsController < ApplicationController
     end
 
     def destroy
-        Friendship.destroy_reverse_friendships(current_user.id, params[:friend_id])
-        redirect_back fallback_location: '/'
+        friend = User.find(params[:friend_id])
+        if overall_status_with(friend)[:value] != nil
+            redirect_back fallback_location: '/', notice: "You must be even before removing a friend!"
+        else
+            Friendship.destroy_reverse_friendships(current_user.id, params[:friend_id])
+            redirect_back fallback_location: '/'
+        end
     end
 
     def confirm

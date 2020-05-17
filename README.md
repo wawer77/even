@@ -3,10 +3,9 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- prevent from deleting friends before getting even with them
-  -to get it - make a summary of all balances too see if even or not 
-
 - add authorization
+
+- Add confirm transacion functionality
 
 - Resolve Transaction validation problem
 
