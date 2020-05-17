@@ -37,6 +37,7 @@ class Transaction < ApplicationRecord
         end
     end
 
+    # TODO - move to service object?
     def transaction_message(user)
         if self.lending_transaction?(user)
             "You lended: #{self.value}"

@@ -47,35 +47,38 @@ class ApplicationController < ActionController::Base
     output
   end
 
-   def lending_transactions(balance, user)
-    partner = balance.partner_for(user)
-    balance.transactions.where(["issuer_id = ? and send_money = ?", user.id, 'true']) + balance.transactions.where(["issuer_id = ? and send_money = ?", partner, 'false'])
-  end
+  # TODO - for deletion - methods moved to user model and refactored to cover all transactions / only for specified balances
 
-  def borrowing_transactions(balance,user)
-    partner = balance.partner_for(user)
-    balance.transactions.where(["issuer_id = ? and send_money = ?", user.id, 'false']) + balance.transactions.where(["issuer_id = ? and send_money = ?", partner.id, 'true'])
-  end
+  # def lending_transactions(balance, user)
+  #  partner = balance.partner_for(user)
+  #  balance.transactions.where(["issuer_id = ? and #send_money = ?", user.id, 'true']) + balance.#transactions.where(["issuer_id = ? and send_money #= ?", partner, 'false'])
+  #end
+#
+  #def borrowing_transactions(balance,user)
+  #  partner = balance.partner_for(user)
+  #  balance.transactions.where(["issuer_id = ? and #send_money = ?", user.id, 'false']) + balance.#transactions.where(["issuer_id = ? and send_money #= ?", partner.id, 'true'])
+  #end
 
-  def lended_value(balance, user)
-    lended_value = 0
-    lending_transactions(balance, user).each do |transaction|
-      lended_value += transaction.value   
-    end
-    lended_value
-  end
+  #def lended_value(balance, user)
+  #  lended_value = 0
+  #  lending_transactions(balance, user).each do |#transaction|
+  #    lended_value += transaction.value   
+  #  end
+  #  lended_value
+  #end
+  #
+  #def borrowed_value(balance, user)
+  #  borrowed_value = 0
+  #  borrowing_transactions(balance, user).each do |#transaction|
+  #    borrowed_value += transaction.value   
+  #  end
+  #  borrowed_value
+  #end
   
-  def borrowed_value(balance, user)
-    borrowed_value = 0
-    borrowing_transactions(balance, user).each do |transaction|
-      borrowed_value += transaction.value   
-    end
-    borrowed_value
-  end
-  
+  # TODO - refactor - to be moved to Balance model?
   def balance_status(balance, user)
-    lended_value = lended_value(balance, user)
-    borrowed_value = borrowed_value(balance, user)
+    lended_value = user.lended_value(balance)
+    borrowed_value = user.borrowed_value(balance)
     if lended_value > borrowed_value
       balance_status = { 
         status: "lending",
@@ -93,7 +96,7 @@ class ApplicationController < ActionController::Base
         status: "even", 
         value: nil, 
         message: "You are even!" 
-    }
+      }
     end
   end
 end

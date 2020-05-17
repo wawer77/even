@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :issued_transactions, foreign_key: :issuer, class_name: 'Transaction'
   has_many :received_transactions, foreign_key: :receiver, class_name: 'Transaction' 
+
   has_and_belongs_to_many :balances
 
   has_many :friendships, -> { where(status: "confirmed") }, dependent: :destroy
@@ -17,7 +18,7 @@ class User < ApplicationRecord
   has_many :received_invitations, ->(user) { where(status: "pending").where.not(invitor_id: user.id) }, foreign_key: :user, class_name: 'Friendship'
 
 
-  #! TRY JOIN?
+  # TODO - TRY JOIN?
   #has_many :transactions, ->(user) { where("issuer_id = ? OR receiver_id = ?", user.id, user.id) }
   #not working as it cheks for transactions WHERE user_ud = user.id AND the conditions above
   #https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord%3a%3aAssociations%3a%3aClassMethods-label-Customizing+the+query
@@ -42,5 +43,59 @@ class User < ApplicationRecord
 
   def invitation_received_from(user)
     self.received_invitations.find_by(invitor_id: user.id)
+  end
+
+  #if more than one Balance, must be an array!
+  def lending_transactions(balances={})
+    if balances.blank?
+      #all transactions
+      transactions = []
+      transactions = self.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'true']) + self.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'false'])
+    else
+      #only for balances indicated in the parameter
+      #if input is single Balance, make it Array, if not - leave it, as more than one Balance input should be an Array
+      balances = [balances] if balances.class != Array
+      transactions = []
+      balances.each do |balance|
+        balance_transactions = balance.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'true']) + balance.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'false'])
+        transactions += balance_transactions
+      end      
+    end
+    transactions.sort
+  end
+
+  #if more than one Balance, must be an array!
+  def borrowing_transactions(balances={})
+    if balances.blank?
+      #all transactions
+      transactions = []
+      transactions = self.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'false']) + self.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'true'])
+    else
+      #only for balances indicated in the parameter
+      #if input is single Balance, make it Array, if not - leave it, as more than one Balance input should be an Array
+      balances = [balances] if balances.class != Array
+      transactions = []
+      balances.each do |balance|
+        balance_transactions = balance.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'false']) + balance.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'true'])
+        transactions += balance_transactions 
+      end      
+    end
+    transactions.sort
+  end
+
+  def lended_value(balances={})
+    lended_value = 0
+    self.lending_transactions(balances).each do |transaction|
+      lended_value += transaction.value   
+    end
+    lended_value
+  end
+
+  def borrowed_value(balances={})
+    borrwed_value = 0
+    self.borrowing_transactions(balances).each do |transaction|
+      borrwed_value += transaction.value   
+    end
+    borrwed_value
   end
 end
