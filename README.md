@@ -3,8 +3,6 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- add authorization
-
 - Add confirm transacion functionality
 
 - Resolve Transaction validation problem
