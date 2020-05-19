@@ -7,6 +7,7 @@ class BalancesController < ApplicationController
   def new
     @balance = Balance.new
     @balance.partner_id = params[:partner_id]
+    friends_collection
   end
 
   def create
@@ -18,7 +19,9 @@ class BalancesController < ApplicationController
     if @balance.save
       redirect_to @balance, notice: "Your balance was created successfully!"
     else
-      render :new
+      #assining friends_collection again, as render :new doesn't call new method and the user_id is an integer instead of collection, which causes the form being a text input, instead of a dropdown list
+      friends_collection
+      render :new            
     end
   end
 
@@ -43,5 +46,12 @@ class BalancesController < ApplicationController
   
   def balance_params
     params.require(:balance).permit(:name, :description, :partner_id, :creator_id)
+  end
+
+  def friends_collection
+    @friends_collection = []
+    current_user.friends.each do |friend|
+      @friends_collection << [friend.username, friend.id]
+    end
   end
 end

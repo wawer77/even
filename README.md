@@ -3,6 +3,8 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
+- when creating balance/transaction make a list of friends/balances to choose from
+
 - Add confirm transacion functionality
 
 - Resolve Transaction validation problem
