@@ -34,7 +34,7 @@ class User < ApplicationRecord
   end 
 
   def balances_with(user)
-    self.transactions.collect(&:balance).uniq.sort
+    (self.balances.to_a) & (user.balances.to_a)
   end
 
   def friends_with?(user)
