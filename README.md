@@ -3,15 +3,15 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- when creating balance/transaction make a list of friends/balances to choose from
+- Add - Cannot delete default balance by hand
 
 - Add confirm transacion functionality
-
-- Resolve Transaction validation problem
 
 - pagination for transactions index (with filtering by user/balance)
 
 - Figure out: what to do in case of Balance deletion? - because those transactions will be visible - do we push them to Default balance or make status field(?) or keep the balance as 'closed' and then transactions are as historic and available thru some 'historic' filter in Transaction index (could be the best soultion - only Balances with 0 transactions could be deleted then, which makes sense); in addition - only even Balances could be set as closed
+
+- javascript for transaction/balance(?) forms
 
 - Minor:
 
