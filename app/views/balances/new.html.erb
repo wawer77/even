@@ -10,7 +10,7 @@
     <br />
     <%= f.input :name, label: "Name:", placeholder: "Name the balance" %>
     <%= f.input :description, label: "Description:", placeholder: "Describe the balance" %>
-    <%= f.input :partner_id, label: "Partner:", collection: @friends_collection, prompt: "Choose partner for new balance" %>
+    <%= f.input :partner_id, collection: current_user.friends, value_method: :id, label_method: :username, label: "Partner:", prompt: "Choose partner for new balance" %>
     <hr />  
     <br>
     <div class="actions">
