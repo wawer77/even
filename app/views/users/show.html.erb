@@ -14,31 +14,43 @@
 
   <%= link_to "Create new Balance", new_balance_path(:partner_id => @user.id), class: 'btn btn-primary' %>
   <hr><br>
-  
-    <h3> Your balances with <%="#{@user.username}:" %> </h3><br>
-      <% @balances_output.each do |output| %>
-        <div>
-          <h5> Balance: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>  </h5>
-          <a> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </a><br>
-          <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by
-          <%= viewer_or_partner(current_user, output[:creator]) %>  </a><br>
-        </div>
-        <hr>
+
+    <h3> Your balances with <%="#{@user.username}:" %> </h3>
+      <% if @balances_output.empty? %>
+        Nothing to show
+      <% else %>
+        <br>
+        <% @balances_output.each do |output| %>
+          <div>
+            <h5> Balance: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>  </h5>
+            <a> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </a><br>
+            <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by
+            <%= viewer_or_partner(current_user, output[:creator]) %>  </a><br>
+          </div>
+          <br>
+        <% end %>
       <% end %>
-    <br>
-    <h3> Your transactions with <%="#{@user.username}:" %> </h3><br>
-    <% @transactions_output.to_enum.with_index(1).reverse_each do |transactions_output, index| %>
-      <div>
-        <h5> <%= link_to "Transaction #{index} ", transaction_path(transactions_output[:transaction]) %>  </h5>  
-        <a>Balance: <%= link_to "#{transactions_output[:balance].name}", balance_path(transactions_output[:balance]) %></a><br>
-        <%= transactions_output[:message] %><br>
-        <%= "Description:" %> 
-        <i><%= "#{transactions_output[:description]}" %> </i><br>
-        <%= transactions_output[:creation_date] %> by
-        <%= viewer_or_partner(current_user, transactions_output[:issuer]) %> 
-        <hr>
-      </div> 
-    <% end %>
+    <hr>
+    
+    <h3> Your transactions with <%="#{@user.username}:" %> </h3>
+    <% if @transactions_output.empty? %>
+      Nothing to show
+    <% else %>
+      <br>
+      <% @transactions_output.to_enum.with_index(1).reverse_each do |transactions_output, index| %>
+        <div>
+          <h5> <%= link_to "Transaction #{index} ", transaction_path(transactions_output[:transaction]) %>  </h5>  
+          <a>Balance: <%= link_to "#{transactions_output[:balance].name}", balance_path(transactions_output[:balance]) %></a><br>
+          <%= transactions_output[:message] %><br>
+          <%= "Description:" %> 
+          <i><%= "#{transactions_output[:description]}" %> </i><br>
+          <%= transactions_output[:creation_date] %> by
+          <%= viewer_or_partner(current_user, transactions_output[:issuer]) %> 
+        </div> 
+        <br>
+      <% end %>
+    <% end %>   
+    <hr>
   <% else %>
     <a>That's you, mate, innit?</a>
   <% end %>
