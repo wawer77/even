@@ -1,10 +1,6 @@
 <h2>Transaction</h2>
   <div>
-    <a> Balance: <%= link_to "#{@transaction.balance.name}", balance_path(@transaction.balance.id)  %> with user <%= link_to "#{@transaction.partner_for(current_user).username}", user_path(@transaction.partner_for(current_user).id) %></a><br>
-    <%= @transaction.transaction_message(current_user) %><br>
-    <%= "Description:" %> 
-    <i><%= "#{@transaction.description}" %> </i><br>
-    <%= @transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> 
-    <a> by <%= viewer_or_partner(current_user, @transaction.issuer) %> 
+    <a> Balance: <%= link_to "#{@output[:balance].name}", balance_path(@output[:balance].id)  %> with user <%= link_to "#{@output[:balance_partner].username}", user_path(@output[:balance_partner].id) %></a><br>
+    <%= render 'transaction_details', output: @output %>
     <hr>
   </div>  

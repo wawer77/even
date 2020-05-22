@@ -31,6 +31,7 @@ class TransactionsController < ApplicationController
   
     def show
       @transaction = Transaction.find(params[:id])
+      @output = transactions_output([@transaction], current_user).first
     end
   
     def edit

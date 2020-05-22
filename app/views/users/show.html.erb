@@ -41,11 +41,7 @@
         <div>
           <h5> <%= link_to "Transaction #{index} ", transaction_path(transactions_output[:transaction]) %>  </h5>  
           <a>Balance: <%= link_to "#{transactions_output[:balance].name}", balance_path(transactions_output[:balance]) %></a><br>
-          <%= transactions_output[:message] %><br>
-          <%= "Description:" %> 
-          <i><%= "#{transactions_output[:description]}" %> </i><br>
-          <%= transactions_output[:creation_date] %> by
-          <%= viewer_or_partner(current_user, transactions_output[:issuer]) %> 
+          <%= render 'transactions/transaction_details', output: transactions_output %>
         </div> 
         <br>
       <% end %>
