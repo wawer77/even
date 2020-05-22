@@ -1,0 +1,5 @@
+<%= output[:message] %><br>
+<%= "Description:" %> 
+<i><%= "#{output[:description]}" %> </i><br>
+<%= output[:creation_date] %> 
+<a> by <%= viewer_or_partner(current_user, output[:issuer]) %> </a>

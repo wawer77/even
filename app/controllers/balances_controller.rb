@@ -26,6 +26,7 @@ class BalancesController < ApplicationController
     @balance_partner = @balance.partner_for(current_user)
     @balance_status = balance_status(@balance, current_user)
     @transactions = @balance.transactions
+    @transactions_output = transactions_output(@transactions, current_user)
   end
 
   def edit

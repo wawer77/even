@@ -4,11 +4,7 @@
       <div>
         <h5> <%= link_to "Transaction #{index} ", transaction_path(output[:transaction]) %>  </h5>  
         <a>Balance: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %> with user <%= link_to "#{output[:balance_partner].username}", user_path(output[:balance_partner].id) %></a><br>
-        <%= output[:message] %><br>
-        <%= "Description:" %> 
-        <i><%= "#{output[:description]}" %> </i><br>
-        <%= output[:creation_date] %> 
-        <a> by <%= viewer_or_partner(current_user, output[:issuer]) %> </a>
+        <%= render 'transaction_details', output: output %>
         <hr>
       </div> 
   <% end %>
