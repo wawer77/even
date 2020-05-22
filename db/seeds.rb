@@ -9,56 +9,74 @@
 require 'database_cleaner'
 DatabaseCleaner.clean_with(:truncation)
 
-@user = User.create!(email: "user@test.com",
+@user1 = User.create!(email: "user@test.com",
                     password: "foobar",
                     password_confirmation: "foobar",
-                    first_name: "Firstuser - name",
-                    last_name: "Firstuser - lastname",
-                    username: "Firstuser-username")
+                    first_name: "1name",
+                    last_name: "1lastname",
+                    username: "1username")
 
-@user = User.create!(email: "user2@test.com",
+@user2 = User.create!(email: "user2@test.com",
                     password: "foobar",
                     password_confirmation: "foobar",
-                    first_name: "Seconduser - name",
-                    last_name: "Seconduser - lastname",
-                    username: "Seconduser - username")
+                    first_name: "2name",
+                    last_name: "2lastname",
+                    username: "2username")
 
-@balance1 = Balance.create!(name: "firstbalance",
-                            description: "firstuser owes money",
-                            partner_id: 1,
-                            creator_id: 2)                   
+@user3 = User.create!(email: "user3@test.com",
+                        password: "foobar",
+                        password_confirmation: "foobar",
+                        first_name: "3name",
+                        last_name: "3lastname",
+                        username: "3username")
 
-@balance2 = Balance.create!(name: "secondbalance",
-                            description: "seconduser owes money",
-                            partner_id: 2,
-                            creator_id: 1)                    
-                    
-@transaction = Transaction.create!(description: "transaction 1",
+@friendship1a = Friendship.create(user_id: 1,
+                                friend_id: 2,
+                                status: 1,
+                                invitor_id: 1)
+@friendship1b = Friendship.create(user_id: 2,
+                                friend_id: 1,
+                                status: 1,
+                                invitor_id: 1)
+@friendship2a = Friendship.create(user_id: 1,
+                                friend_id: 3,
+                                status: 1,
+                                invitor_id: 1)
+@friendship2b = Friendship.create(user_id: 3,
+                                friend_id: 1,
+                                status: 1,
+                                invitor_id: 1)
+
+@balance1 = Balance.create(creator_id: @user1.id, partner_id: @user2.id, name: "#{@user1.username} - #{@user2.username}", description: "1 owes")
+@balance1.users << [@user1, @user2]
+
+@balance2 = Balance.create(creator_id: @user1.id, partner_id: @user3.id, name: "#{@user1.username} - #{@user3.username}", description: "1 lends")
+@balance2.users << [@user1, @user3]
+
+@transaction = Transaction.create!(description: "1 borrowing",
                                     value: 10,
                                     issuer_id: 1,
                                     receiver_id: 2,
                                     send_money: false,
                                     balance_id: @balance1.id)
     
-@transaction = Transaction.create!(description: "transaction 2",
+@transaction = Transaction.create!(description: "1 lending",
                                     value: 5,
                                     issuer_id: 1,
                                     receiver_id: 2,
                                     send_money: true,
                                     balance_id: @balance1.id)
 
-@transaction = Transaction.create!(description: "transaction 3",
+@transaction = Transaction.create!(description: "1 lending",
                                     value: 10,
-                                    issuer_id: 2,
+                                    issuer_id: 3,
                                     receiver_id: 1,
                                     send_money: false,
                                     balance_id: @balance2.id)
     
-@transaction = Transaction.create!(description: "transaction 4",
+@transaction = Transaction.create!(description: "1 borrowing",
                                     value: 5,
-                                    issuer_id: 2,
+                                    issuer_id: 3,
                                     receiver_id: 1,
                                     send_money: true,
                                     balance_id: @balance2.id)
-                           
-puts "2 regular users, 2 balances and 4 transactions created"
