@@ -2,4 +2,11 @@
 <%= "Description:" %> 
 <i><%= "#{output[:description]}" %> </i><br>
 <%= output[:creation_date] %> 
-<a> by <%= viewer_or_partner(current_user, output[:issuer]) %> </a>
+<a> by <%= viewer_or_partner(current_user, output[:issuer]) %> </a><br>
+<% if output[:transaction].status == 'pending' %>
+    <b>Transaction not yet confirmed!</b>
+    <% if output[:transaction].receiver_id == current_user.id %>
+        <%= link_to "Confirm transaction", confirm_transaction_path(output[:transaction]), class: 'btn btn-primary' %>
+    <% end %>
+<% end %>
+
