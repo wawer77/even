@@ -3,7 +3,7 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Add confirm transacion functionality
+- Add authorisation to confirmation actions
 
 - pagination for transactions index (with filtering by user/balance)
 

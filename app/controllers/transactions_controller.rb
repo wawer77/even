@@ -41,6 +41,12 @@ class TransactionsController < ApplicationController
   
     def destroy
     end
+
+    def confirm
+      transaction = Transaction.find(params[:id])
+      transaction.confirmed!
+      redirect_back fallback_location: '/', notice: "Transaction confirmed!"
+    end
   
     private
   

@@ -3,7 +3,13 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]  
  
-  resources :transactions, :balances
+  resources :balances
+
+  resources :transactions do
+    member do
+      get :confirm
+    end
+  end
 
   resources :friendships do
     member do
