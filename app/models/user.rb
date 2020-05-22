@@ -60,14 +60,14 @@ class User < ApplicationRecord
     elsif balances == "all"  
       #all transactions
       transactions = []
-      transactions = self.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'true']) + self.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'false'])
+      transactions = self.transactions.confirmed.where(["issuer_id = ? and send_money = ?", self.id, 'true']) + self.transactions.confirmed.where(["issuer_id != ? and send_money = ?", self.id, 'false'])
     else
       #only for balances indicated in the parameter
       #if input is single Balance, make it Array, if not - leave it, as more than one Balance input should be an Array
       balances = [balances] if balances.class != Array
       transactions = []
       balances.each do |balance|
-        balance_transactions = balance.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'true']) + balance.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'false'])
+        balance_transactions = balance.transactions.confirmed.where(["issuer_id = ? and send_money = ?", self.id, 'true']) + balance.transactions.confirmed.where(["issuer_id != ? and send_money = ?", self.id, 'false'])
         transactions += balance_transactions
       end      
     end
@@ -81,14 +81,14 @@ class User < ApplicationRecord
     elsif balances == "all" 
       #all transactions
       transactions = []
-      transactions = self.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'false']) + self.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'true'])
+      transactions = self.transactions.confirmed.where(["issuer_id = ? and send_money = ?", self.id, 'false']) + self.transactions.confirmed.where(["issuer_id != ? and send_money = ?", self.id, 'true'])
     else
       #only for balances indicated in the parameter
       #if input is single Balance, make it Array, if not - leave it, as more than one Balance input should be an Array
       balances = [balances] if balances.class != Array
       transactions = []
       balances.each do |balance|
-        balance_transactions = balance.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'false']) + balance.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'true'])
+        balance_transactions = balance.transactions.confirmed.where(["issuer_id = ? and send_money = ?", self.id, 'false']) + balance.transactions.confirmed.where(["issuer_id != ? and send_money = ?", self.id, 'true'])
         transactions += balance_transactions 
       end      
     end
