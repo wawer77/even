@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -6,15 +7,14 @@ class ApplicationController < ActionController::Base
   #Redirects users to log in when trying to add post (it's Devise, not Pundit!)
   before_action :authenticate_user!
 
-  #include Pundit
-  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  # Defines what to do in case of unathorized action
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
 
-  #def user_not_authorized
-  #  flash[:alert] = "You are not authorized to perform this action."
-  #  redirect_to(root_path)
-  #end
+  def user_not_authorized
+    redirect_back fallback_location: '/', notice: "You are not authorized to perform this action!"
+  end
   
   # TODO - will go to service object later balances & transactions (together, separately?)
   def transactions_output(transactions, user)

@@ -44,8 +44,9 @@ class TransactionsController < ApplicationController
     end
 
     def confirm
-      transaction = Transaction.find(params[:id])
-      transaction.confirmed!
+      @transaction = Transaction.find(params[:id])
+      authorize @transaction
+      @transaction.confirmed!
       redirect_back fallback_location: '/', notice: "Transaction confirmed!"
     end
   
