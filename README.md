@@ -3,8 +3,6 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Add - Cannot delete default balance by hand
-
 - Add confirm transacion functionality
 
 - pagination for transactions index (with filtering by user/balance)

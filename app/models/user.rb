@@ -56,6 +56,8 @@ class User < ApplicationRecord
   #if more than one Balance, must be an array!
   def lending_transactions(balances={})
     if balances.blank?
+      nil
+    elsif balances == "all"  
       #all transactions
       transactions = []
       transactions = self.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'true']) + self.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'false'])
@@ -69,12 +71,14 @@ class User < ApplicationRecord
         transactions += balance_transactions
       end      
     end
-    transactions.sort
+    transactions.sort if transactions != nil
   end
 
   #if more than one Balance, must be an array!
   def borrowing_transactions(balances={})
     if balances.blank?
+      nil
+    elsif balances == "all" 
       #all transactions
       transactions = []
       transactions = self.transactions.where(["issuer_id = ? and send_money = ?", self.id, 'false']) + self.transactions.where(["issuer_id != ? and send_money = ?", self.id, 'true'])
@@ -88,22 +92,30 @@ class User < ApplicationRecord
         transactions += balance_transactions 
       end      
     end
-    transactions.sort
+    transactions.sort if transactions != nil
   end
 
   def lended_value(balances={})
     lended_value = 0
-    self.lending_transactions(balances).each do |transaction|
-      lended_value += transaction.value   
+    if balances.blank?
+      lended_value
+    else
+      self.lending_transactions(balances).each do |transaction|
+        lended_value += transaction.value   
+      end
     end
     lended_value
   end
 
   def borrowed_value(balances={})
-    borrwed_value = 0
-    self.borrowing_transactions(balances).each do |transaction|
-      borrwed_value += transaction.value   
+    borrowed_value = 0
+    if balances.blank?
+      borrowed_value
+    else
+      self.borrowing_transactions(balances).each do |transaction|
+        borrowed_value += transaction.value   
+      end
     end
-    borrwed_value
+    borrowed_value
   end
 end
