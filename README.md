@@ -48,11 +48,11 @@ App for managing debts. Users share balances with their friends. That allows the
 
 ## Configuration
 - clone
-...
+```
 $ bundle install
-...
+```
 - Configure user and password in database.yml if needed.
-...
+```
 $ rake db:create
 $ rake db:migrate
-...
+```
