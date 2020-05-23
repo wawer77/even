@@ -3,7 +3,7 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Add authorisation to confirmation actions
+- Prevent from duplicating friendship requests
 
 - pagination for transactions index (with filtering by user/balance)
 
