@@ -1,11 +1,13 @@
 class Friendship < ApplicationRecord
     enum status: { pending: 0, confirmed: 1 }
+    validates :user_id, uniqueness: { scope: :friend_id }
     belongs_to :user
     belongs_to :friend, class_name: 'User'
 
     def self.create_reverse_friendships(user_id, friend_id)
-        user_friendship = Friendship.create(user_id: user_id, friend_id: friend_id, invitor_id: user_id)
-        friend_friendship = Friendship.create(user_id: friend_id, friend_id: user_id, invitor_id: user_id)
+        @user_friendship = Friendship.create(user_id: user_id, friend_id: friend_id, invitor_id: user_id)
+        @friend_friendship = Friendship.create(user_id: friend_id, friend_id: user_id, invitor_id: user_id)
+        return 'true' if @user_friendship.valid?
     end
 
     def self.destroy_reverse_friendships(user_id, friend_id)

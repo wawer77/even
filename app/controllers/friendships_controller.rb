@@ -9,8 +9,11 @@ class FriendshipsController < ApplicationController
     end
 
     def create
-        Friendship.create_reverse_friendships(current_user.id, params[:friend_id])
-        redirect_back fallback_location: '/'
+        if Friendship.create_reverse_friendships(current_user.id, params[:friend_id])
+            redirect_back fallback_location: '/'
+        else
+            redirect_back fallback_location: '/', alert: "You can't create the same friendship twice!"
+        end
     end
 
     def destroy
