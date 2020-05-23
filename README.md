@@ -3,8 +3,6 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Prevent from duplicating friendship requests
-
 - Edit Balances (name description)
 
 - Edit Transactions BEFORE confirmed (if edited by receiver, it should get reversed)
