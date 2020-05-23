@@ -53,7 +53,7 @@ App for managing debts. Users share balances with their friends. That allows the
 $ bundle install
 ```
 - Configure user and password in database.yml if needed.
-- Create and migrate the database
+- Create and migrate the database:
 ```
 $ rake db:create
 $ rake db:migrate
