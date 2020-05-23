@@ -5,9 +5,15 @@ To stay even with your friends.
 
 - Prevent from duplicating friendship requests
 
-- pagination for transactions index (with filtering by user/balance)
+- Edit Balances (name description)
 
-- Figure out: what to do in case of Balance deletion? - because those transactions will be visible - do we push them to Default balance or make status field(?) or keep the balance as 'closed' and then transactions are as historic and available thru some 'historic' filter in Transaction index (could be the best soultion - only Balances with 0 transactions could be deleted then, which makes sense); in addition - only even Balances could be set as closed
+- Edit Transactions BEFORE confirmed (if edited by receiver, it should get reversed)
+
+- Balance Delete buttons (only if 0 transactions)
+
+- Balance archive buttons (only if even) -> make balance + all related transactions archived
+
+- pagination for transactions index (with filtering by user/balance/archived)
 
 - javascript for transaction/balance(?) forms
 
@@ -25,52 +31,28 @@ To stay even with your friends.
   - make bootstrap icons working
 
   - Further changes:    
-      - New: Make fields work properly
+      - New User: Make fields work properly
       - searchbar for users and balances
       - Navbar: highlight My Balances tab, when on page: balance/id
 
-## Known issues suspended for now:
-- gem sass is deprecated, therefore need for sassc and rails-sassc?
-
 ## Description
-App for managing debts between users. Every user has a dashboard with balances list - every with another user/ Every change made to the balance must be accepted.
+App for managing debts. Users share balances with their friends. That allows them to add transactions, where they specify how much they lended or borrowed. Users can crate unlimited number of balances with the same friend. Each transaction must be confirmed by the second party before it gets added to the balance, but when confirmed - it cannot be deleted. Each balance can be archived when its status is "Even". Transactions become archived together with the balance they correspond to and can be viewed by both users. Users can remove others form their friends list, but only when the overall status with them is "Even". 
 
 ## For future development
+- Add test suite.
 - Relocation of debts (eg. A owes 5 to B, B 5 to C, C 5 to A => debts are cancelled).
-- Groups sharing one debt: model groups with users; automatically assigned even values
+- Groups sharing one debt: model groups with users.
 
-## Features:
-- admin dashboard?
-- users index?
-- users have private dashboard with balance list
-- users have official profile to be viewed by others
-
-- each change having 2 status columns: for user A and B
-  - A sends a debt to B - A: sent, B:pending
-  - B accepts: accepted-both and added to balance (+ or -)
-  - B rejects: rejected
-- Button to make the balance 0
-
-## Models:
-
-## UI:
-
-## Refactor TODOS:
-
-## To figure out:
-
-## Ruby/Rails version:
-2.5.1/5.2.1
+## Ruby / Rails version:
+2.5.1p57 / Rails 5.2.4.2
 
 ## Configuration
 - clone
-- run bundle install
-
-## Database
-- configure user and password in database.yml if needed
-- run: rake db:create, rake db:migrate
-
-## Test suite
-## Deployment instructions
-
-## Comments
+...
+$ bundle install
+...
+- Configure user and password in database.yml if needed.
+...
+$ rake db:create
+$ rake db:migrate
+...
