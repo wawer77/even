@@ -47,11 +47,13 @@ App for managing debts. Users share balances with their friends. That allows the
 2.5.1p57 / Rails 5.2.4.2
 
 ## Configuration
-- clone
+- Clone the repo.
+- Install needed gems:
 ```
 $ bundle install
 ```
 - Configure user and password in database.yml if needed.
+- Create and migrate the database
 ```
 $ rake db:create
 $ rake db:migrate
