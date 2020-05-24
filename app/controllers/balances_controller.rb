@@ -1,4 +1,5 @@
 class BalancesController < ApplicationController
+  before_action :set_balance, only: [:show, :edit, :update]
   def index
       @balances = current_user.balances.reverse_each
       @output = balances_output(@balances, current_user)
@@ -26,7 +27,6 @@ class BalancesController < ApplicationController
 
 
   def show
-    @balance = Balance.find(params[:id])
     @balance_partner = @balance.partner_for(current_user)
     @balance_status = balance_status(@balance, current_user)
     @transactions = @balance.transactions
@@ -34,9 +34,16 @@ class BalancesController < ApplicationController
   end
 
   def edit
+    @balance.partner_id = @balance.partner_for(current_user).id
   end
 
   def update
+    @balance.partner_id = @balance.partner_for(current_user).id
+    if @balance.update(balance_params)
+      redirect_to @balance, notice: "The balance was successfully edited."
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -46,5 +53,9 @@ class BalancesController < ApplicationController
   
   def balance_params
     params.require(:balance).permit(:name, :description, :partner_id)
+  end
+
+  def set_balance
+    @balance = Balance.find(params[:id])
   end
 end

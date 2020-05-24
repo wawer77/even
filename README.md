@@ -3,8 +3,6 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Edit Balances (name description)
-
 - Edit Transactions BEFORE confirmed (if edited by receiver, it should get reversed)
 
 - Balance Delete buttons (only if 0 transactions)
@@ -25,6 +23,9 @@ To stay even with your friends.
     - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
     - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
       - Doesn't check for . after @ - add it
+
+  - When editin (e.g. Balance) - pre-populated forms turn green
+    https://stackoverflow.com/questions/51848531/rails-simple-form-gem-is-adding-a-green-border-to-inputs-that-are-pre-populated
 
   - make bootstrap icons working
 
