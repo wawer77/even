@@ -1,6 +1,7 @@
 <h2>Balance <i><%= @balance.name %></i></h2>
 <div>
   <p> <b>With user:</b> <%= link_to "#{@balance_partner.username}", user_path(@balance_partner.id) %> </p>
+  <p> <b>Description:</b> <%= @balance.description %> </p>
   <h4> <b><%= "#{@balance_status[:message]}" %></b> <%= "#{@balance_status[:value]}" %> </h4>
   <%= render 'buttons', balance: @balance %>
 </div>
