@@ -1,5 +1,5 @@
 class BalancesController < ApplicationController
-  before_action :set_balance, only: [:show, :edit, :update]
+  before_action :set_balance, only: [:show, :edit, :update, :destroy]
   def index
       @balances = current_user.balances.reverse_each
       @output = balances_output(@balances, current_user)
@@ -47,6 +47,12 @@ class BalancesController < ApplicationController
   end
 
   def destroy
+    if @balance.transactions.empty?
+      @balance.delete
+      redirect_to '/balances', notice: "The balance was deleted."
+    else
+      redirect_back fallback_location: '/balances', alert: "You can't delete Balance with transactions!"
+    end
   end
 
   private

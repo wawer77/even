@@ -5,11 +5,11 @@ To stay even with your friends.
 
 - Edit Transactions BEFORE confirmed (if edited by receiver, it should get reversed)
 
-- Balance Delete buttons (only if 0 transactions)
-
 - Balance archive buttons (only if even) -> make balance + all related transactions archived
 
 - pagination for transactions index (with filtering by user/balance/archived)
+
+- No user provided when creating balance validation problem!
 
 - javascript for transaction/balance(?) forms
 
