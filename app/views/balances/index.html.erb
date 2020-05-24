@@ -7,7 +7,8 @@
     <a> <b>Description:</b> <%= output[:balance].description %> </a>
     <br>
     <a> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </a><br>
-     <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by <%= viewer_or_partner(current_user, output[:creator]) %>  </a><br>
+    <a> <b>Last edited on:</b> <%= output[:balance].updated_at.strftime("%-d %B %Y at %k:%M") %> by <%= viewer_or_partner(current_user, User.find(output[:balance].updated_by_id)) %>  </a><br>
+    <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by <%= viewer_or_partner(current_user, output[:creator]) %>  </a><br>
   </div>
   <hr class="my-4">
   <% end %>
