@@ -9,8 +9,6 @@ To stay even with your friends.
 
 - pagination for transactions index (with filtering by user/balance/archived)
 
-- No user provided when creating balance validation problem!
-
 - javascript for transaction/balance(?) forms
 
 - Minor:
