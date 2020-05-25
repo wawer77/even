@@ -13,6 +13,7 @@ class BalancesController < ApplicationController
   def create
     @balance = Balance.new(balance_params)
     @balance.creator_id = current_user.id
+    @balance.updated_by_id = current_user.id
     if @balance.valid?
       if current_user.friends_with?(User.find(@balance.partner_id))
         @balance.save
@@ -38,7 +39,9 @@ class BalancesController < ApplicationController
   end
 
   def update
+    #partner_id doesn't need to be passed here, as it already exists and validation is turned off, but when .update fails, render :edit renders without it and it's ugly
     @balance.partner_id = @balance.partner_for(current_user).id
+    @balance.updated_by_id = current_user.id
     if @balance.update(balance_params)
       redirect_to @balance, notice: "The balance was successfully edited."
     else
@@ -58,7 +61,7 @@ class BalancesController < ApplicationController
   private
   
   def balance_params
-    params.require(:balance).permit(:name, :description, :partner_id)
+    params.require(:balance).permit(:name, :description, :partner_id, :updated_by_id)
   end
 
   def set_balance
