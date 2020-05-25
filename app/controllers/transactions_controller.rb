@@ -35,6 +35,7 @@ class TransactionsController < ApplicationController
     end
   
     def edit
+      authorize @transaction
       if @transaction.receiver == current_user && @transaction.lending_transaction?(current_user)
         @transaction.send_money = 'true'
       elsif  @transaction.receiver == current_user && @transaction.borrowing_transaction?(current_user)
@@ -43,6 +44,7 @@ class TransactionsController < ApplicationController
     end
   
     def update
+      authorize @transaction
       @new_issuer_id = @transaction.receiver_id
       @new_receiver_id = @transaction.issuer_id
       @transaction.receiver_id = @new_receiver_id
