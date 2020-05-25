@@ -61,7 +61,7 @@ class BalancesController < ApplicationController
   private
   
   def balance_params
-    params.require(:balance).permit(:name, :description, :partner_id, :updated_by_id)
+    params.require(:balance).permit(:name, :description, :partner_id)
   end
 
   def set_balance
