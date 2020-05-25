@@ -1,0 +1,20 @@
+<h2>Edit Transaction</h2>
+<%= simple_form_for @transaction, defaults: { required: false } do |f| %>
+  <% if @transaction.errors.any? %>
+    <% @transaction.errors.full_messages.each do |error| %>
+      <%= js add_gritter(error, title: "Even App Notification", sticky: false, time: 500) %>
+    <% end %>
+  <% end %>
+
+    <br />
+    <%= f.input :description, label: "Description:", placeholder: "Describe the transaction" %>
+    <%= f.input :balance_id, as: :grouped_select, collection: current_user.friends, group_method: proc { |x| x.balances_with(current_user) }, group_label_method: :username, value_method: :id, label_method: :name, label: "Balance:", disabled: true, hint: "You can't change balance for existing transaction"  %>
+    <%= f.input :send_money, label: "Transaction type:",  as: :radio_buttons, collection: [['I lend the money', 'true'], ['I borrow the money', 'false']] %>
+    <%= f.input :value, label: "Value:", placeholder: "Provide the value" %>
+    <hr />  
+    <br>
+    <div class="actions">
+      <%= f.submit 'Send', class: 'btn btn-primary btn-block' %>
+    </div>
+
+<% end %>
