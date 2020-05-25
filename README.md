@@ -3,13 +3,10 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Edit Transactions BEFORE confirmed (if edited by receiver, it should get reversed)
+- Add delete transaction functionality (if status pending)
 
+- Balance attr_readonly 
 - Balance archive buttons (only if even) -> make balance + all related transactions archived
-
-- pagination for transactions index (with filtering by user/balance/archived)
-
-- javascript for transaction/balance(?) forms
 
 - Minor:
 
@@ -25,18 +22,21 @@ To stay even with your friends.
   - When editin (e.g. Balance) - pre-populated forms turn green
     https://stackoverflow.com/questions/51848531/rails-simple-form-gem-is-adding-a-green-border-to-inputs-that-are-pre-populated
 
-  - make bootstrap icons working
-
   - Further changes:    
       - New User: Make fields work properly
-      - searchbar for users and balances
       - Navbar: highlight My Balances tab, when on page: balance/id
 
 ## Description
-App for managing debts. Users share balances with their friends. That allows them to add transactions, where they specify how much they lended or borrowed. Users can crate unlimited number of balances with the same friend. Each transaction must be confirmed by the second party before it gets added to the balance, but when confirmed - it cannot be deleted. Each balance can be archived when its status is "Even". Transactions become archived together with the balance they correspond to and can be viewed by both users. Users can remove others form their friends list, but only when the overall status with them is "Even". 
+App for managing debts. You simply create balances with other Users, who must be your frirends. That allows you to add transactions, where you can specify how much you lended or borrowed. Users can crate unlimited number of balances with the same friend. Each transaction must be confirmed by the other fellow before it gets added to the balance, but when confirmed - it cannot be modified/deleted, so act with great care, mates! Each balance can be archived when its status is "Even". Transactions become archived together with the balance they correspond to and can be viewed by both users. Users can remove others form their friends list, but only when the overall status with them is "Even", so it ain't no place for tricky bastards.
 
-## For future development
-- Add test suite.
+## For future development - technical issues
+- Add test suite!
+- JS for Balances/Transaction forms.
+- Make Transaction - make them not updated if the overall status not changed (when editing, the issuer and receiver is changed together with the :send_money, so the overall status remains, but the transaction IS updated in the DB.)
+
+## For future development - features
+- Searchbar
+- Pagination with filters
 - Relocation of debts (eg. A owes 5 to B, B 5 to C, C 5 to A => debts are cancelled).
 - Groups sharing one debt: model groups with users.
 
