@@ -17,6 +17,7 @@ class TransactionsController < ApplicationController
     def create
       @transaction = Transaction.new(transaction_params)
       @transaction.issuer_id = current_user.id
+      @transaction.creator_id = current_user.id
       @transaction.updated_by_id = current_user.id
       if @transaction.balance_id
         balance = Balance.find(@transaction.balance_id)
