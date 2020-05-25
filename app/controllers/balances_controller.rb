@@ -1,7 +1,7 @@
 class BalancesController < ApplicationController
   before_action :set_balance, only: [:show, :edit, :update, :destroy]
   def index
-      @balances = current_user.balances.reverse_each
+      @balances = current_user.balances.reverse
       @output = balances_output(@balances, current_user)
   end
 
@@ -12,19 +12,19 @@ class BalancesController < ApplicationController
   
   def create
     @balance = Balance.new(balance_params)
-    if current_user.friends_with?(User.find(balance_params[:partner_id]))
-      @balance.creator_id = current_user.id
-      if @balance.save
+    @balance.creator_id = current_user.id
+    if @balance.valid?
+      if current_user.friends_with?(User.find(@balance.partner_id))
+        @balance.save
         @balance.users << [current_user, User.find(@balance.partner_id)]
         redirect_to @balance, notice: "Your balance was created successfully!"
       else
-        render :new            
+        redirect_back fallback_location: '/', notice: "You can create balances with friends only." 
       end
     else
-      redirect_back fallback_location: '/', notice: "You can create balances with friends only."
+      render :new
     end
   end
-
 
   def show
     @balance_partner = @balance.partner_for(current_user)
