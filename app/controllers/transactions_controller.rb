@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  before_action :set_transaction, only: [:show, :confirm]
     def index
         @transactions = (current_user.issued_transactions + current_user.received_transactions).sort_by{|t| t[:created_at]}
         @output = transactions_output(@transactions, current_user)
@@ -17,12 +18,12 @@ class TransactionsController < ApplicationController
       @transaction = Transaction.new(transaction_params)
       @transaction.issuer_id = current_user.id
 
-      if  @transaction.balance_id
+      if @transaction.balance_id
         balance = Balance.find(@transaction.balance_id)
         @transaction.receiver_id = balance.partner_for(current_user).id
-      else
       end
       if @transaction.save
+        @transaction.balance.change_updated_at_by(current_user)     
         redirect_to balance, notice: "Your transaction was created successfully!"
       else
         render :new
@@ -30,7 +31,6 @@ class TransactionsController < ApplicationController
     end
   
     def show
-      @transaction = Transaction.find(params[:id])
       @output = transactions_output([@transaction], current_user).first
     end
   
@@ -44,9 +44,8 @@ class TransactionsController < ApplicationController
     end
 
     def confirm
-      @transaction = Transaction.find(params[:id])
       authorize @transaction
-      @transaction.confirmed!
+      @transaction.balance.change_updated_at_by(current_user) if @transaction.confirmed!
       redirect_back fallback_location: '/', notice: "Transaction confirmed!"
     end
   
@@ -54,5 +53,9 @@ class TransactionsController < ApplicationController
   
     def transaction_params
       params.require(:transaction).permit(:description, :value,  :send_money, :balance_id)
-    end   
+    end
+
+    def set_transaction
+      @transaction = Transaction.find(params[:id])
+    end
 end
