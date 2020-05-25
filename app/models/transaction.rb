@@ -1,13 +1,15 @@
 class Transaction < ApplicationRecord
     enum status: { pending: 0, confirmed: 1 }
     #possible to define when created, but not edited later
-    attr_readonly :balance_id
+    attr_readonly :balance_id, :creator_id
     validates_presence_of :balance_id
     validates :value, presence: true, numericality: { greater_than: 0 }
     validates :send_money, inclusion: { in: [ true, false ] }
 
     belongs_to :issuer, class_name: 'User'
     belongs_to :receiver, class_name: 'User', optional: true
+    belongs_to :creator, class_name: 'User'
+    belongs_to :updator, class_name: 'User', foreign_key: :updated_by_id
     belongs_to :balance, optional: true#, foreign_key: :balance, class_name: 'Balance' 
 
     ##### These methods are used, as couldn't extend the relation to simply users - including both issuer and receiver

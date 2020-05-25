@@ -3,9 +3,14 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Add delete transaction functionality (if status pending)
+- Refactor transaction (balance as well?) output in application_controller and views where it's used (output)
 
-- Balance attr_readonly 
+- Add edit transaction links
+
+- Add delete transaction functionality (if status pending) by creator
+
+- Transaction model optional: true? - probably for validation problems, which are now solved? - tidy up
+- Balance attr_readonly, creator - tidy up the model
 - Balance archive buttons (only if even) -> make balance + all related transactions archived
 
 - Minor:
