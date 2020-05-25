@@ -1,6 +1,7 @@
 class Transaction < ApplicationRecord
     enum status: { pending: 0, confirmed: 1 }
-    attr_accessor :balance_name
+    #possible to define when created, but not edited later
+    attr_readonly :balance_id
     validates_presence_of :balance_id
     validates :value, presence: true, numericality: { greater_than: 0 }
     validates :send_money, inclusion: { in: [ true, false ] }
