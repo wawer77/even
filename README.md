@@ -3,7 +3,8 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Balance archive buttons (only if even) -> make balance + all related transactions archived
+- Delete balance together with transactions
+- Remove transactions index
 
 - Minor:
 
