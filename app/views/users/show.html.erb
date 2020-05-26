@@ -35,11 +35,11 @@
     <hr>
     
     <h3> Your transactions with <%="#{@user.username}:" %> </h3>
-    <% if @transactions_output.empty? %>
+    <% if @transactions_output.first.nil? %>
       Nothing to show
     <% else %>
       <br>
-      <% @transactions_output.to_enum.with_index(1).reverse_each do |transactions_output, index| %>
+      <% @transactions_output.reverse_each do |transactions_output, index| %>
         <div>
           <h5> <%= link_to "Transaction #{index} ", transaction_path(transactions_output[:transaction]) %>  </h5>  
           <a>Balance: <%= link_to "#{transactions_output[:balance].name}", balance_path(transactions_output[:balance]) %></a><br>
