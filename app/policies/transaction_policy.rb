@@ -10,4 +10,8 @@ class TransactionPolicy < ApplicationPolicy
   def edit?
     update?
   end
+
+  def destroy?
+    record.status == 'pending' && record.creator == user
+  end
 end

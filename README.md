@@ -3,13 +3,13 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Add edit transaction links
-
-- Add delete transaction functionality (if status pending) by creator
+- Make balance updated on all transaction actions
 
 - Transaction model optional: true? - probably for validation problems, which are now solved? - tidy up
 - Balance attr_readonly, creator - tidy up the model
 - Balance archive buttons (only if even) -> make balance + all related transactions archived
+
+- Sort balances transactions on???
 
 - Minor:
 

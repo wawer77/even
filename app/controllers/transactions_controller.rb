@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :set_transaction, only: [:show, :edit, :update, :confirm]
+  before_action :set_transaction, only: [:show, :edit, :update, :confirm, :destroy]
     def index
         @transactions = (current_user.issued_transactions + current_user.received_transactions).sort_by{|t| t[:created_at]}
         @output = transactions_output(@transactions, current_user)
@@ -59,6 +59,10 @@ class TransactionsController < ApplicationController
     end
   
     def destroy
+      authorize @transaction
+      @transaction_balance = @transaction.balance
+      @transaction.delete
+      redirect_to @transaction_balance, notice: "The transaction was successfully deleted."
     end
 
     def confirm
