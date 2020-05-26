@@ -11,7 +11,7 @@
 
 <div>
   <h3>Balance History:</h3><br>
-  <% @transactions_output.to_enum.with_index(1).reverse_each do |output, index| %>
+  <% @transactions_output.reverse_each do |output, index| %>
     <%= link_to transaction_path(output[:transaction]) do %>
       <div>
         <h5> <%= link_to "Transaction #{index} ", transaction_path(output[:transaction]) %>  </h5>
