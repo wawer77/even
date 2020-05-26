@@ -5,8 +5,6 @@ To stay even with your friends.
 
 - Balance archive buttons (only if even) -> make balance + all related transactions archived
 
-- Sort balances transactions on???
-
 - Minor:
 
   - Transaction creation:
