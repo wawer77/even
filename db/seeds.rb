@@ -47,10 +47,10 @@ DatabaseCleaner.clean_with(:truncation)
                                 status: 1,
                                 invitor_id: 1)
 
-@balance1 = Balance.create(creator_id: @user1.id, partner_id: @user2.id, name: "#{@user1.username} - #{@user2.username}", description: "1 owes", updated_by_id: @user1.id)
+@balance1 = Balance.create(creator_id: @user1.id, partner_id: @user2.id, name: "#{@user1.username} - #{@user2.username}", description: "1 owes", editor_id: @user1.id)
 @balance1.users << [@user1, @user2,]
 
-@balance2 = Balance.create(creator_id: @user1.id, partner_id: @user3.id, name: "#{@user1.username} - #{@user3.username}", description: "1 lends", updated_by_id: @user1.id)
+@balance2 = Balance.create(creator_id: @user1.id, partner_id: @user3.id, name: "#{@user1.username} - #{@user3.username}", description: "1 lends", editor_id: @user1.id)
 @balance2.users << [@user1, @user3,]
 
 @transaction = Transaction.create!(description: "1 borrowing",
@@ -59,7 +59,7 @@ DatabaseCleaner.clean_with(:truncation)
                                     receiver_id: 2,
                                     send_money: false,
                                     balance_id: @balance1.id,
-                                    updated_by_id: 1,
+                                    editor_id: 1,
                                     creator_id: 1)
     
 @transaction = Transaction.create!(description: "1 lending",
@@ -68,7 +68,7 @@ DatabaseCleaner.clean_with(:truncation)
                                     receiver_id: 2,
                                     send_money: true,
                                     balance_id: @balance1.id,
-                                    updated_by_id: 1,
+                                    editor_id: 1,
                                     creator_id: 1)
 
 @transaction = Transaction.create!(description: "1 lending",
@@ -77,7 +77,7 @@ DatabaseCleaner.clean_with(:truncation)
                                     receiver_id: 1,
                                     send_money: false,
                                     balance_id: @balance2.id,
-                                    updated_by_id: 3,
+                                    editor_id: 3,
                                     creator_id: 3)
     
 @transaction = Transaction.create!(description: "1 borrowing",
@@ -86,5 +86,5 @@ DatabaseCleaner.clean_with(:truncation)
                                     receiver_id: 1,
                                     send_money: true,
                                     balance_id: @balance2.id,
-                                    updated_by_id: 3,
+                                    editor_id: 3,
                                     creator_id: 3)
