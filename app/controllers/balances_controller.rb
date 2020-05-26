@@ -30,8 +30,8 @@ class BalancesController < ApplicationController
   def show
     @balance_partner = @balance.partner_for(current_user)
     @balance_status = balance_status(@balance, current_user)
-    @transactions = @balance.transactions
-    @transactions_output = transactions_output(@transactions, current_user)
+    @transactions = transactions_sorted(@balance.transactions)
+    @transactions_output = transactions_output(@transactions, current_user).reverse.to_enum.with_index(1)
   end
 
   def edit
