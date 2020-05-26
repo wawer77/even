@@ -7,10 +7,11 @@ class Transaction < ApplicationRecord
     validates :send_money, inclusion: { in: [ true, false ] }
 
     belongs_to :issuer, class_name: 'User'
+    #optiona: true, because only Balance is provided and receiver_id is inferred from that in controller - if it's validated, then this error pops up, which is confusing
     belongs_to :receiver, class_name: 'User', optional: true
     belongs_to :creator, class_name: 'User'
-    belongs_to :editor, class_name: 'User', foreign_key: :updated_by_id
-    belongs_to :balance, optional: true#, foreign_key: :balance, class_name: 'Balance' 
+    belongs_to :editor, class_name: 'User'
+    belongs_to :balance #, foreign_key: :balance, class_name: 'Balance' 
 
     ##### These methods are used, as couldn't extend the relation to simply users - including both issuer and receiver
     def users
