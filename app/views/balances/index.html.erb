@@ -1,15 +1,14 @@
 <div>
   <% @output.each do |output| %>
   <div>
-    <h3> Name: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>  
-    <%= render 'buttons', balance: output[:balance] %> </h3>
-    <a> <b>With user:</b> <%= link_to "#{output[:partner].username}", user_path(output[:partner].id) %> </a><br>
-    <a> <b>Description:</b> <%= output[:balance].description %> </a>
-    <br>
-    <a> <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> </a><br>
-    <a> <b>Last edited on:</b> <%= output[:balance].updated_at.strftime("%-d %B %Y at %k:%M") %> by <%= viewer_or_partner(current_user, User.find(output[:balance].updated_by_id)) %>  </a><br>
-    <a> <%= output[:balance].created_at.strftime(" Created on: %-d %B %Y at %k:%M") %> by <%= viewer_or_partner(current_user, output[:creator]) %>  </a><br>
+    <h4> Name: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>   </h4>
+    <%= render 'buttons', balance: output[:balance] %> <br>
+    <b>With user:</b> <%= link_to "#{output[:partner].username}", user_path(output[:partner].id) %> <br>
+    <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> <br>
+    <b>Description:</b> <%= output[:balance].description %> <br>
+    <%= output[:edition_date] %> by <%= viewer_or_partner(current_user, output[:editor]) %> <br>
+    <%= output[:creation_date] %> by <%= viewer_or_partner(current_user, output[:creator]) %> <br>
   </div>
-  <hr class="my-4">
+  <hr>
   <% end %>
 </div>
