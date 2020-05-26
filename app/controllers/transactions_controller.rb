@@ -1,8 +1,9 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :confirm, :destroy]
     def index
-        @transactions = (current_user.issued_transactions + current_user.received_transactions).sort_by{|t| t[:created_at]}
-        @output = transactions_output(@transactions, current_user)
+        @transactions = current_user.issued_transactions + current_user.received_transactions
+        @transactions_sorted = transactions_sorted(@transactions)
+        @output = transactions_output(@transactions_sorted, current_user).reverse.to_enum.with_index(1)
     end
   
     def new
