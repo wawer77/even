@@ -3,8 +3,6 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Refactor transaction (balance as well?) output in application_controller and views where it's used (output)
-
 - Add edit transaction links
 
 - Add delete transaction functionality (if status pending) by creator
