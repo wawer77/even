@@ -1,10 +1,13 @@
 class Balance < ApplicationRecord
     attr_accessor :partner_id
-    has_and_belongs_to_many :users
     validates_presence_of :name
     #valdation turned off for update, as must provide partner_id(which exists already) when changing updated_by_id whenever transaction is created->
     validates_presence_of :partner_id, on: :create
     #has_many :transactions - try to make it work?
+    
+    has_and_belongs_to_many :users
+    belongs_to :creator, class_name: 'User', foreign_key: :creator
+    belongs_to :editor, class_name: 'User', foreign_key: :updated_by_id
 
     def partner_for(user)
         self.users.where.not(id: user.id).first

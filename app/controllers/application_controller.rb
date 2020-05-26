@@ -41,9 +41,11 @@ class ApplicationController < ActionController::Base
       output << {
         balance: balance,
         partner: balance.partner_for(user),
-        creator: User.find(balance.creator_id),
         status: balance_status(balance, user),
-        creation_date: balance.created_at
+        creation_date: balance.created_at.strftime(" Created on: %-d %B %Y at %k:%M"),
+        edition_date: balance.updated_at.strftime(" Edited on: %-d %B %Y at %k:%M"),
+        creator: balance.creator,
+        editor: balance.editor
       }
     end
     output
