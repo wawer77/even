@@ -1,6 +1,6 @@
 class TransactionPolicy < ApplicationPolicy
   def confirm?
-    record.users.include?(user) && record.updated_by_id != user.id
+    record.editor != user && record.users.include?(user)
   end
 
   def update?
