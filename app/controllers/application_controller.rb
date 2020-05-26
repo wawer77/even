@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
         message: transaction.transaction_message(user),
         description: transaction.description,
         creation_date: transaction.created_at.strftime(" Created on: %-d %B %Y at %k:%M"),
-        update_date: transaction.updated_at.strftime(" Updated on: %-d %B %Y at %k:%M"),
+        edition_date: transaction.updated_at.strftime(" Updated on: %-d %B %Y at %k:%M"),
         creator: transaction.creator,
         editor: transaction.editor
       }

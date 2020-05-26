@@ -1,5 +1,5 @@
 <%= output[:message] %><br>
 <%= "Description: #{output[:description]}" %><br>
 <%= output[:creation_date] %> by <%= viewer_or_partner(current_user, output[:creator]) %><br>
-<%= output[:update_date] %> by <%= viewer_or_partner(current_user, output[:editor]) %><br>
+<%= output[:edition_date] %> by <%= viewer_or_partner(current_user, output[:editor]) %><br>
 <%= render 'transactions/buttons', output: output %>

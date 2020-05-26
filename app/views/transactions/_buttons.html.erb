@@ -1,6 +1,6 @@
 <% if output[:transaction].status == 'pending' %>
     <b>Transaction not yet confirmed!</b>
-    <% if output[:transaction].updated_by_id != current_user.id %>
+    <% if output[:editor] != current_user.id %>
         <%= link_to "Confirm transaction", confirm_transaction_path(output[:transaction]), class: 'btn btn-primary' %>
     <% end %>
     <%= link_to "Edit transaction", edit_transaction_path(output[:transaction]), class: 'btn btn-primary' %>
