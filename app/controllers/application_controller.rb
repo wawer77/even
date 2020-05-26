@@ -51,6 +51,24 @@ class ApplicationController < ActionController::Base
     output
   end
 
+  def transactions_sorted(transactions)
+    output = []
+    pending = []
+    confirmed = []
+    transactions.sort_by{|t| t[:updated_at]}.each do |transaction|
+      if transaction.status == 'pending'
+        pending << transaction
+      else
+        confirmed << transaction
+      end
+    end
+    pending.reverse!
+    confirmed.reverse!
+    output = pending + confirmed
+    output
+    
+  end
+
   # TODO - for deletion - methods moved to user model and refactored to cover all transactions / only for specified balances
 
   # def lending_transactions(balance, user)
