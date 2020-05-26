@@ -52,6 +52,7 @@ class TransactionsController < ApplicationController
       @transaction.issuer_id = @new_issuer_id
       @transaction.updated_by_id = current_user.id
       if @transaction.update(transaction_params)
+        @transaction.balance.change_updated_at_by(current_user)
         redirect_to @transaction, notice: "The transaction was successfully edited."        
       else
         render :edit
@@ -61,7 +62,7 @@ class TransactionsController < ApplicationController
     def destroy
       authorize @transaction
       @transaction_balance = @transaction.balance
-      @transaction.delete
+      @transaction.balance.change_updated_at_by(current_user) if @transaction.delete
       redirect_to @transaction_balance, notice: "The transaction was successfully deleted."
     end
 
