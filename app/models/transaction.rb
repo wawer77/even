@@ -9,7 +9,7 @@ class Transaction < ApplicationRecord
     belongs_to :issuer, class_name: 'User'
     belongs_to :receiver, class_name: 'User', optional: true
     belongs_to :creator, class_name: 'User'
-    belongs_to :updator, class_name: 'User', foreign_key: :updated_by_id
+    belongs_to :editor, class_name: 'User', foreign_key: :updated_by_id
     belongs_to :balance, optional: true#, foreign_key: :balance, class_name: 'Balance' 
 
     ##### These methods are used, as couldn't extend the relation to simply users - including both issuer and receiver
