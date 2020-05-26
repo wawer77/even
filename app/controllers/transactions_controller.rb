@@ -18,7 +18,8 @@ class TransactionsController < ApplicationController
       @transaction = Transaction.new(transaction_params)
       @transaction.issuer_id = current_user.id
       @transaction.creator_id = current_user.id
-      @transaction.updated_by_id = current_user.id
+      @transaction.editor_id = current_user.id
+      # if this is run without the 'if' - then in case of balance not chosen - error: no Balance with id: nil instead of save failure
       if @transaction.balance_id
         balance = Balance.find(@transaction.balance_id)
         @transaction.receiver_id = balance.partner_for(current_user).id

@@ -6,8 +6,8 @@ class Balance < ApplicationRecord
     #has_many :transactions - try to make it work?
     
     has_and_belongs_to_many :users
-    belongs_to :creator, class_name: 'User', foreign_key: :creator
-    belongs_to :editor, class_name: 'User', foreign_key: :updated_by_id
+    belongs_to :creator, class_name: 'User'
+    belongs_to :editor, class_name: 'User'
 
     def partner_for(user)
         self.users.where.not(id: user.id).first
@@ -22,7 +22,7 @@ class Balance < ApplicationRecord
     end
 
     def change_updated_at_by(user)
-        self.update(updated_by_id: user.id)
+        self.update(editor_id: user.id)
         #touch in case the update needs only date - updated_by_id remains the same and update rolls back, but returns true anyway
         self.touch
     end

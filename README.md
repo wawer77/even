@@ -3,8 +3,6 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Transaction model optional: true? - probably for validation problems, which are now solved? - tidy up
-- Balance attr_readonly, creator - tidy up the model
 - Balance archive buttons (only if even) -> make balance + all related transactions archived
 
 - Sort balances transactions on???
@@ -28,7 +26,7 @@ To stay even with your friends.
       - Navbar: highlight My Balances tab, when on page: balance/id
 
 ## Description
-App for managing debts. You simply create balances with other Users, who must be your frirends. That allows you to add transactions, where you can specify how much you lended or borrowed. Users can crate unlimited number of balances with the same friend. Each transaction must be confirmed by the other fellow before it gets added to the balance, but when confirmed - it cannot be modified/deleted, so act with great care, mates! Each balance can be archived when its status is "Even". Transactions become archived together with the balance they correspond to and can be viewed by both users. Users can remove others form their friends list, but only when the overall status with them is "Even", so it ain't no place for tricky bastards.
+App for managing debts. You simply create balances with other Users, who must be your frirends. That allows you to add transactions, where you can specify how much you lended or borrowed. Users can create unlimited number of balances with the same friend. Each transaction must be confirmed by the other fellow before it gets added to the balance, but when confirmed - it cannot be modified/deleted, so act with great care! Each balance can be archived when its status is "Even". Transactions become archived together with the balance they correspond to and can be viewed by both users. Users can remove others form their friends list, but only when the overall status with them is "Even"!
 
 ## For future development - technical issues
 - Add test suite!
