@@ -1,6 +1,6 @@
 
 <div>
-  <% @output.to_enum.with_index(1).reverse_each do |output, index| %>
+  <% @output.reverse_each do |output, index| %>
       <div>
         <h5> <%= link_to "Transaction #{index} ", transaction_path(output[:transaction]) %>  </h5>  
         <a>Balance: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %> with user <%= link_to "#{output[:balance_partner].username}", user_path(output[:balance_partner].id) %></a><br>
