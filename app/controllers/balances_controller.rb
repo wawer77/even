@@ -50,11 +50,12 @@ class BalancesController < ApplicationController
   end
 
   def destroy
-    if @balance.transactions.empty?
+    authorize @balance
+    if @balance.even?
       @balance.delete
       redirect_to '/balances', notice: "The balance was deleted."
     else
-      redirect_back fallback_location: '/balances', alert: "You can't delete Balance with transactions!"
+      redirect_back fallback_location: '/balances', alert: "You can't delete uneven Balance!"
     end
   end
 

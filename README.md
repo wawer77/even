@@ -3,8 +3,7 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Delete balance together with transactions
-- Remove transactions index
+- authorize previewing Balancs/transactions for authors only
 
 - Minor:
 
