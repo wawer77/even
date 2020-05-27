@@ -24,6 +24,9 @@ gem 'pry-rails', :group => :development
 gem 'database_cleaner'
 
 #Security vulnerabilities resolve:
+gem "actionpack", ">= 5.2.4.3"
+gem "activestorage", ">= 5.2.4.3"
+gem "activesupport", ">= 5.2.4.3"
 gem 'actionview', '>= 5.2.4.2'
 gem 'railties', '>= 5.2.2.1'
 gem 'nokogiri', '>= 1.10.8'
