@@ -13,10 +13,6 @@ class Balance < ApplicationRecord
         self.users.where.not(id: user.id).first
     end
 
-    def creator
-        User.find(self.creator_id)
-    end
-
     def change_updated_at_by(user)
         self.update(editor_id: user.id)
         #touch in case the update needs only date - updated_by_id remains the same and update rolls back, but returns true anyway
