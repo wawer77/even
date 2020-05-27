@@ -18,4 +18,8 @@ class Balance < ApplicationRecord
         #touch in case the update needs only date - updated_by_id remains the same and update rolls back, but returns true anyway
         self.touch
     end
+
+    def even?
+        (self.users.first.lended_value(self) == self.users.first.borrowed_value(self)) || false
+    end
 end
