@@ -1,4 +1,7 @@
 class FriendshipsController < ApplicationController
+    before_action :set_friendship, only: [:confirm]
+    before_action :pundit_authorize, only: [:destory, :confirm]
+
     def index
         @sent_invitations = current_user.sent_invitations
         @received_invitations = current_user.received_invitations
@@ -27,12 +30,18 @@ class FriendshipsController < ApplicationController
     end
 
     def confirm
-        @friendship = Friendship.find(params[:id])
-        authorize @friendship
         @friendship.confirm_reverse_friendships
         @friend = User.find(@friendship.friend_id)
         @balance = Balance.create(creator_id: @friend.id, partner_id: current_user.id, name: "Default #{@friend.username} - #{current_user.username}", description: "This is a default-created Balance after adding a friend" )
         @balance.users << [current_user, @friend]
         redirect_back fallback_location: '/'
+    end
+
+    def set_friendship
+        @friendship = Friendship.find(params[:id])
+    end
+
+    def pundit_authorize
+        authorize @friendship
     end
 end
