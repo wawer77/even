@@ -1,5 +1,8 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :confirm, :destroy]
+  before_action :pundit_authorize, only: [:show, :edit, :update, :confirm, :destroy]
+
+
     def index
         @transactions = current_user.issued_transactions + current_user.received_transactions
         @transactions_sorted = transactions_sorted(@transactions)
@@ -38,7 +41,6 @@ class TransactionsController < ApplicationController
     end
   
     def edit
-      authorize @transaction
       if @transaction.receiver == current_user && @transaction.lending_transaction?(current_user)
         @transaction.send_money = 'true'
       elsif  @transaction.receiver == current_user && @transaction.borrowing_transaction?(current_user)
@@ -47,7 +49,6 @@ class TransactionsController < ApplicationController
     end
   
     def update
-      authorize @transaction
       @new_issuer_id = @transaction.receiver_id
       @new_receiver_id = @transaction.issuer_id
       @transaction.receiver_id = @new_receiver_id
@@ -62,14 +63,12 @@ class TransactionsController < ApplicationController
     end
   
     def destroy
-      authorize @transaction
       @transaction_balance = @transaction.balance
       @transaction.balance.change_updated_at_by(current_user) if @transaction.delete
       redirect_to @transaction_balance, notice: "The transaction was successfully deleted."
     end
 
     def confirm
-      authorize @transaction
       @transaction.balance.change_updated_at_by(current_user) if @transaction.confirmed!
       redirect_back fallback_location: '/', notice: "Transaction confirmed!"
     end
@@ -83,4 +82,9 @@ class TransactionsController < ApplicationController
     def set_transaction
       @transaction = Transaction.find(params[:id])
     end
+
+    def pundit_authorize
+      authorize @transaction
+    end
+    
 end
