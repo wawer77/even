@@ -19,7 +19,6 @@ To stay even with your friends.
 
   - Further changes:    
       - New User: Make fields work properly
-      - Navbar: highlight My Balances tab, when on page: balance/id
 
 ## Description
 App for managing debts. You simply create balances with other Users, who must be your frirends. That allows you to add transactions, where you can specify how much you lended or borrowed. Users can create unlimited number of balances with the same friend. Each transaction must be confirmed by the other fellow before it gets added to the balance, but when confirmed - it cannot be modified/deleted, so act with great care! Each balance can be archived when its status is "Even". Transactions become archived together with the balance they correspond to and can be viewed by both users. Users can remove others form their friends list, but only when the overall status with them is "Even"!
