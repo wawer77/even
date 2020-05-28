@@ -7,13 +7,17 @@ class ApplicationController < ActionController::Base
   #Redirects users to log in when trying to add post (it's Devise, not Pundit!)
   before_action :authenticate_user!
 
-  # Defines what to do in case of unathorized action
+  rescue_from ActiveRecord::RecordNotFound, with: :no_record_found
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
 
   def user_not_authorized
     redirect_back fallback_location: '/', notice: "You are not authorized to perform this action!"
+  end
+
+  def no_record_found
+    redirect_back fallback_location: '/', alert: "Nothing was found!"
   end
   
   # TODO - will go to service object later balances & transactions (together, separately?)
