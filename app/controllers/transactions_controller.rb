@@ -53,7 +53,7 @@ class TransactionsController < ApplicationController
       @new_receiver_id = @transaction.issuer_id
       @transaction.receiver_id = @new_receiver_id
       @transaction.issuer_id = @new_issuer_id
-      @transaction.updated_by_id = current_user.id
+      @transaction.editor_id = current_user.id
       if @transaction.update(transaction_params)
         @transaction.balance.change_updated_at_by(current_user)
         redirect_to @transaction, notice: "The transaction was successfully edited."        
