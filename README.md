@@ -3,8 +3,6 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- authorize previewing Balancs/transactions for authors only
-
 - Minor:
 
   - Transaction creation:

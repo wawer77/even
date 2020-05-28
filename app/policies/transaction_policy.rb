@@ -1,4 +1,8 @@
 class TransactionPolicy < ApplicationPolicy
+  def show?
+    record.users.include?(user)
+  end
+  
   def confirm?
     record.editor != user && record.users.include?(user)
   end
