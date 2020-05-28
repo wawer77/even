@@ -3,22 +3,11 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- Minor:
-
-  - Transaction creation:
-    lend money - if another input is incorrect - this is as 'is-valid' in html and green;
-    borrow money - if another input is incorrect - nothing, input correct, but no 'is-valid' div class
-
-  - use simple form + form fixes
-    - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
-    - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
-      - Doesn't check for . after @ - add it
-
-  - When editin (e.g. Balance) - pre-populated forms turn green
-    https://stackoverflow.com/questions/51848531/rails-simple-form-gem-is-adding-a-green-border-to-inputs-that-are-pre-populated
-
-  - Further changes:    
-      - New User: Make fields work properly
+- use simple form + form fixes
+  - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
+  - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
+    - Doesn't check for . after @ - add it
+  - Login as above
 
 ## Description
 App for managing debts. You simply create balances with other Users, who must be your frirends. That allows you to add transactions, where you can specify how much you lended or borrowed. Users can create unlimited number of balances with the same friend. Each transaction must be confirmed by the other fellow before it gets added to the balance, but when confirmed - it cannot be modified/deleted, so act with great care! Each balance can be archived when its status is "Even". Transactions become archived together with the balance they correspond to and can be viewed by both users. Users can remove others form their friends list, but only when the overall status with them is "Even"!
