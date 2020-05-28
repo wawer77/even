@@ -1,5 +1,7 @@
 class BalancesController < ApplicationController
   before_action :set_balance, only: [:show, :edit, :update, :destroy]
+  before_action :pundit_authorize, only: [:show, :edit, :update, :destroy]
+
   def index
       @balances = current_user.balances.reverse
       @output = balances_output(@balances, current_user)
@@ -50,7 +52,6 @@ class BalancesController < ApplicationController
   end
 
   def destroy
-    authorize @balance
     if @balance.even?
       @balance.delete
       redirect_to '/balances', notice: "The balance was deleted."
@@ -67,5 +68,9 @@ class BalancesController < ApplicationController
 
   def set_balance
     @balance = Balance.find(params[:id])
+  end
+
+  def pundit_authorize
+    authorize @balance
   end
 end
