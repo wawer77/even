@@ -3,8 +3,6 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
-- make buttons look better - especially friends list
-
 - use simple form + form fixes
   - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
   - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
