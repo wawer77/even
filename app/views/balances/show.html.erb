@@ -1,8 +1,8 @@
 <h2>Balance <i><%= @balance.name %></i></h2>
 <div>
-  <p> <b>With user:</b> <%= link_to "#{@balance_partner.username}", user_path(@balance_partner.id) %> </p>
-  <a> <b>Description:</b> <%= @balance.description %> </a><br>
-  <a> <b>Last edited on:</b> <%= @balance.updated_at.strftime("%-d %B %Y at %k:%M") %> by <%= viewer_or_partner(current_user, @balance.editor) %>  </a><br>
+  <b>With user:</b> <%= link_to "#{@balance_partner.username}", user_path(@balance_partner.id) %> <br>
+  <b>Description:</b> <%= @balance.description %> <br>
+  <b>Last edited on:</b> <%= @balance.updated_at.strftime("%-d %B %Y at %k:%M") %> by <%= viewer_or_partner(current_user, @balance.editor) %> <br><br>
   <h4> <b><%= "#{@balance_status[:message]}" %></b> <%= "#{@balance_status[:value]}" %> </h4>
   <%= render 'buttons', balance: @balance %>
 </div>

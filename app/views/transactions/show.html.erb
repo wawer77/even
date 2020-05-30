@@ -1,6 +1,6 @@
 <h2>Transaction</h2>
   <div>
-    <a> Balance: <%= link_to "#{@output[:balance].name}", balance_path(@output[:balance].id)  %> with user <%= link_to "#{@output[:balance_partner].username}", user_path(@output[:balance_partner].id) %></a><br>
+    Balance: <%= link_to "#{@output[:balance].name}", balance_path(@output[:balance].id)  %> with user <%= link_to "#{@output[:balance_partner].username}", user_path(@output[:balance_partner].id) %><br>
     <%= render 'transaction_details', output: @output %>
     <hr>
   </div>  
