@@ -7,6 +7,8 @@ Have ever forgotten 'how much was it'? Here you can simply create balances with 
 
 ## CURRENT TO DO:
 
+- Refactor TODOs
+
 ## For future development - technical issues
 - Add test suite!
 - JS for Balances/Transaction forms

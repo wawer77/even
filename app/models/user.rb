@@ -18,8 +18,6 @@ class User < ApplicationRecord
   has_many :sent_invitations, ->(user) { where(status: "pending", invitor_id: user.id) }, foreign_key: :user, class_name: 'Friendship'
   has_many :received_invitations, ->(user) { where(status: "pending").where.not(invitor_id: user.id) }, foreign_key: :user, class_name: 'Friendship'
 
-
-  # TODO - TRY JOIN?
   #has_many :transactions, ->(user) { where("issuer_id = ? OR receiver_id = ?", user.id, user.id) }
   #not working as it cheks for transactions WHERE user_ud = user.id AND the conditions above
   #https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord%3a%3aAssociations%3a%3aClassMethods-label-Customizing+the+query
