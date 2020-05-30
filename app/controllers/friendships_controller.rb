@@ -25,6 +25,7 @@ class FriendshipsController < ApplicationController
             redirect_back fallback_location: '/', notice: "You must be even before removing a friend!"
         else
             Friendship.destroy_reverse_friendships(current_user.id, params[:friend_id])
+            current_user.balances_with(friend).each(&:destroy)
             redirect_back fallback_location: '/'
         end
     end
