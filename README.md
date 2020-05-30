@@ -1,17 +1,11 @@
 # Even
 To stay even with your friends.
 
-## CURRENT TO DO:
-
-- use simple form + form fixes
-  - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
-  - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
-    - Doesn't check for . after @ - add it
-  - Login as above
-
 ## Description
 App for managing debts. 
 Have ever forgotten 'how much was it'? Here you can simply create balances with other Users. That allows you to add transactions on the go. In each transaction you can specify how much you lended or borrowed. Users can create unlimited number of balances with the same friend. Each transaction must be confirmed by the other fellow before it gets added to the balance, but when confirmed - it cannot be modified/deleted, so act with great care! Each balance can be deleted when its status is Even. Transactions become deleted together with the balance they correspond to. Users can remove others form their friends list, but only when the overall status with them is Even.
+
+## CURRENT TO DO:
 
 ## For future development - technical issues
 - Add test suite!
