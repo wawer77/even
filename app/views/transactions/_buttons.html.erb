@@ -1,10 +1,10 @@
 <% if output[:transaction].status == 'pending' %>
-    <b>Transaction not yet confirmed!</b>
-    <%= link_to "Edit transaction", edit_transaction_path(output[:transaction]), class: 'btn btn-primary' %>
+    <b>Transaction not yet confirmed!</b> <br>
+    <%= link_to "Edit transaction", edit_transaction_path(output[:transaction]), class: 'btn btn-warning' %>
     <% if output[:editor] != current_user %>
-        <%= link_to "Confirm transaction", confirm_transaction_path(output[:transaction]), class: 'btn btn-primary' %>
+        <%= link_to "Confirm transaction", confirm_transaction_path(output[:transaction]), class: 'btn btn-success' %>
     <% end %>
     <% if output[:creator] == current_user %>
-        <%= link_to "Delete transaction", transaction_path(output[:transaction]), :method => :delete, class: 'btn btn-primary btn-red' %>
+        <%= link_to "Delete transaction", transaction_path(output[:transaction]), :method => :delete, class: 'btn btn-danger' %>
     <% end %>
 <% end %>

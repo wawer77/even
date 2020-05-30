@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-  validates_presence_of :first_name, :last_name, :username
-
+  validates_presence_of :first_name, :last_name
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  
   has_many :issued_transactions, foreign_key: :issuer, class_name: 'Transaction'
   has_many :received_transactions, foreign_key: :receiver, class_name: 'Transaction' 
 

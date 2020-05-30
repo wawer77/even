@@ -1,5 +1,5 @@
 <%= link_to "Add transaction", new_transaction_path(:balance_id => balance.id), class: 'btn btn-primary' %>
 <%= link_to "Edit balance", edit_balance_path(balance), class: 'btn btn-primary' %>
 <% if balance.even? %>
-  <%= link_to "Delete balance", balance_path(balance), :method => :delete, class: 'btn btn-primary btn-red' %>
+  <%= link_to "Delete balance", balance_path(balance), :method => :delete, class: 'btn btn-danger' %>
 <% end %>

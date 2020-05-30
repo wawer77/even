@@ -2,7 +2,7 @@
   <% @output.each do |output| %>
   <div>
     <h4> Name: <%= link_to "#{output[:balance].name}", balance_path(output[:balance]) %>   </h4>
-    <%= render 'buttons', balance: output[:balance] %> <br>
+    <%= render 'buttons', balance: output[:balance] %> <br><br>
     <b>With user:</b> <%= link_to "#{output[:partner].username}", user_path(output[:partner].id) %> <br>
     <b>Status:</b> <%= "#{output[:status][:message]} #{output[:status][:value]}" %> <br>
     <b>Description:</b> <%= output[:balance].description %> <br>

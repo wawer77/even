@@ -1,20 +1,20 @@
 <div class='logo'>
-	<h1>Even</h1>
+	<h1 class="display-4"><b>Even</b></h1>
 </div>
 
 	<ul class="nav nav-tabs">
 	<% if current_user %>
 		<li class="nav-item">
-			<%= link_to "Home", root_path, {class: "nav-link #{active?(root_path)}"} %>
+			<%= link_to "Home", user_root_path, {class: "nav-link #{active?(user_root_path)}"} %>
 		</li>
 		<li class="nav-item">
-			<%= link_to "My balances", balances_path, {class: "nav-link #{active?(balances_path)}"}  %>
+			<%= link_to "My balances", balances_path, {class: "nav-link #{tab_active?(balances_path)}"}  %>
 		</li>
 			<li class="nav-item">
 			<%= link_to "Create new balance", new_balance_path, {class: "nav-link #{active?(new_balance_path)}"} %>
 		</li>		
 		<li class="nav-item">
-			<%= link_to "My transactions", transactions_path, {class: "nav-link #{active?(transactions_path)}"}  %>
+			<%= link_to "My transactions", transactions_path, {class: "nav-link #{tab_active?(transactions_path)}"}  %>
 		</li>
 			<li class="nav-item">
 			<%= link_to "Create new transaction", new_transaction_path, {class: "nav-link #{active?(new_transaction_path)}"} %>
@@ -34,6 +34,9 @@
 		</li>
 		<li class="nav-item">
 			<%= link_to "Log in", new_user_session_path, {class: "nav-link #{active?(new_user_session_path)}"}  %>
+		</li>
+		<li class="nav-item">
+			<%= link_to "Sign up", new_user_registration_path, {class: "nav-link #{active?(new_user_registration_path)}"}  %>
 		</li>
 	<% end %>
 	</ul>
