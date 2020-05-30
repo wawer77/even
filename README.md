@@ -3,6 +3,8 @@ To stay even with your friends.
 
 ## CURRENT TO DO:
 
+- make buttons look better - especially friends list
+
 - use simple form + form fixes
   - Login - when wrong username input - The field turns green with a tick-sign (should be red note or whatever) -> input class turns '= is-valid'
   - User registration simple_form not working properly - doesn't ask for the '@' in e-mail straightaway 
@@ -20,7 +22,7 @@ Have ever forgotten 'how much was it'? Here you can simply create balances with 
 
 ## For future development - features
 - Searchbar
-- Notifications or new actions in brackets in navbar
+- Notifications or new actions in brackets in navbar (and on landing page)
 - Pagination with filters
 - Relocation of debts (eg. A owes 5 to B, B 5 to C, C 5 to A => debts are cancelled)
 - Groups sharing one debt
