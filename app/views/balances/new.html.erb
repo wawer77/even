@@ -1,5 +1,5 @@
 <h2>New balance</h2>
-
+<hr>
 <%= simple_form_for @balance, defaults: { required: false } do |f| %>
   <% if @balance.errors.any? %>
     <% @balance.errors.full_messages.each do |error| %>

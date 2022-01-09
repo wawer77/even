@@ -7,7 +7,8 @@ Have ever forgotten 'how much was it'? Here you can simply create balances with 
 
 ## CURRENT TO DO:
 
-- Refactor TODOs
+- Add info about pending transactions in the Balance list
+- Cannot delete balance with pending transactions
 
 ## For future development - technical issues
 - Add test suite!
