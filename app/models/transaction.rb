@@ -5,6 +5,7 @@ class Transaction < ApplicationRecord
     validates_presence_of :balance_id
     validates :value, presence: true, numericality: { greater_than: 0 }
     validates :send_money, inclusion: { in: [ true, false ] }
+    validate :receiver_other_than_issuer
 
     belongs_to :issuer, class_name: 'User'
     #optiona: true, because only Balance is provided and receiver_id is inferred from that in controller - if it's validated, then this error pops up, which is confusing
@@ -51,4 +52,10 @@ class Transaction < ApplicationRecord
             "You borrowed: #{self.value}"
         end
     end 
+
+    def receiver_other_than_issuer
+        if self.receiver_id == self.issuer_id 
+            errors.add(:receiver, "cannot be the the Issuer at the same time")
+        end            
+    end
 end
