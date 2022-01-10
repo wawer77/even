@@ -3,6 +3,7 @@ class Balance < ApplicationRecord
     validates_presence_of :name
     #valdation turned off for update, as must provide partner_id(which exists already) when changing updated_by_id whenever transaction is created->
     validates_presence_of :partner_id, on: :create
+    validate :balance_owners_are_different
     
     has_many :transactions, class_name: 'Transaction', foreign_key: 'balance_id', dependent: :delete_all
     has_and_belongs_to_many :users
@@ -21,5 +22,11 @@ class Balance < ApplicationRecord
 
     def even?
         (self.users.first.lended_value(self) == self.users.first.borrowed_value(self)) || false
+    end
+
+    def balance_owners_are_different
+        if self.users.uniq.length != self.users.length
+            errors.add(:users, "for one Balance must be different")
+        end
     end
 end
