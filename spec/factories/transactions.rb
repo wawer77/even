@@ -7,6 +7,6 @@ FactoryBot.define do
     creator_id  { issuer_id }
     editor_id  { issuer_id }
     send_money { false }
-    balance_id { FactoryBot.create(:balance).id }
+    balance_id { FactoryBot.create(:balance, creator_id: issuer_id, partner_id: receiver_id).id }
   end
 end
