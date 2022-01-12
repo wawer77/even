@@ -1,6 +1,6 @@
 class Friendship < ApplicationRecord
     enum status: { pending: 0, confirmed: 1 }
-    validates :user_id, uniqueness: { scope: :friend_id }
+    validate :invited_is_not_invitor
     belongs_to :user
     belongs_to :friend, class_name: 'User'
 
@@ -26,5 +26,12 @@ class Friendship < ApplicationRecord
     
     def reverse_friendship
         Friendship.where(user_id: self.friend_id, friend_id: self.user_id)
+    end
+
+    def invited_is_not_invitor
+        if self.user == self.friend
+            errors.add(:friend, "cannot be the Invitor at the same time")
+        end
+
     end
 end

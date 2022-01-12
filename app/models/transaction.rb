@@ -55,7 +55,7 @@ class Transaction < ApplicationRecord
 
     def receiver_other_than_issuer
         if self.receiver_id == self.issuer_id 
-            errors.add(:receiver, "cannot be the the Issuer at the same time")
+            errors.add(:receiver, "cannot be the Issuer at the same time")
         end            
     end
 end
