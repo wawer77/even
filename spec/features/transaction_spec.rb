@@ -30,7 +30,7 @@ describe 'navigate' do
   end
 
   describe 'actions' do
-    describe 'transaction created by current user' do
+    describe 'transaction created or edited by current user' do
       before do
         @transaction = FactoryBot.create(:transaction, issuer_id: @user.id)
         @balance = @transaction.balance
@@ -81,8 +81,9 @@ describe 'navigate' do
         end
       end
     end
+    #Thought about going farther in the loop, but now the following section takes over, when the current user becomes the "different one" and the behvaiour on the other side is testes below.
 
-    describe 'transaction created by different user' do
+    describe 'transaction created or edited by different user' do
       before do
         @transaction = FactoryBot.create(:transaction, receiver_id: @user.id)
         @balance = @transaction.balance
