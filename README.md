@@ -6,6 +6,8 @@ App for managing debts.
 Have ever forgotten 'how much was it'? Here you can simply create balances with other Users. That allows you to add transactions on the go. In each transaction you can specify how much you lended or borrowed. Users can create unlimited number of balances with the same friend. Each transaction must be confirmed by the other fellow before it gets added to the balance, but when confirmed - it cannot be modified/deleted, so act with great care! Each balance can be deleted when its status is Even. Transactions become deleted together with the balance they correspond to. Users can remove others form their friends list, but only when the overall status with them is Even.
 
 ## CURRENT TO DO:
+- Refactor tests and factories - lots of duplicate code(?)
+- Add tests for Working on balance - cannot delet when not even
 
 - Add info about pending transactions in the Balance list
 - Cannot delete balance with pending transactions
