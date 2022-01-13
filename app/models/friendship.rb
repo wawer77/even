@@ -25,13 +25,12 @@ class Friendship < ApplicationRecord
     end
     
     def reverse_friendship
-        Friendship.where(user_id: self.friend_id, friend_id: self.user_id)
+        Friendship.where(user_id: self.friend_id, friend_id: self.user_id).first
     end
 
     def invited_is_not_invitor
         if self.user == self.friend
             errors.add(:friend, "cannot be the Invitor at the same time")
         end
-
     end
 end
