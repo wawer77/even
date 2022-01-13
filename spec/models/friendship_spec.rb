@@ -31,6 +31,10 @@ RSpec.describe Friendship, type: :model do
   end
 
   describe "methods part" do
+    before do
+      Friendship.create_reverse_friendships(FactoryBot.create(:user).id, FactoryBot.create(:user).id)
+      @friendship = Friendship.last
+    end
 
     it "create reverse friendship works" do
       expect {
@@ -39,25 +43,19 @@ RSpec.describe Friendship, type: :model do
     end
 
     it "destroy reverse friendship works" do
-      Friendship.create_reverse_friendships(FactoryBot.create(:user).id, FactoryBot.create(:user).id)
-      friendship = Friendship.last
       expect {
-        Friendship.destroy_reverse_friendships(friendship.user_id, friendship.friend_id)
+        Friendship.destroy_reverse_friendships(@friendship.user_id, @friendship.friend_id)
       }.to change(Friendship, :count).by(-2)
     end
 
     it "reverse friendship method works" do
-      Friendship.create_reverse_friendships(FactoryBot.create(:user).id, FactoryBot.create(:user).id)
-      friendship = Friendship.last
-      expect(friendship.reverse_friendship.id).to be(Friendship.find(friendship.id - 1).id)
+      expect(@friendship.reverse_friendship.id).to be(Friendship.find(@friendship.id - 1).id)
     end
 
     it "confirm reverse friendships works" do
-      Friendship.create_reverse_friendships(FactoryBot.create(:user).id, FactoryBot.create(:user).id)
-      friendship = Friendship.last
-      friendship.confirm_reverse_friendships
-      expect(friendship.reload).to have_attributes(:status => "confirmed")
-      expect(Friendship.find(friendship.id - 1)).to have_attributes(:status => "confirmed")
+      @friendship.confirm_reverse_friendships
+      expect(@friendship.reload).to have_attributes(:status => "confirmed")
+      expect(Friendship.find(@friendship.id - 1)).to have_attributes(:status => "confirmed")
     end
   end
 end
