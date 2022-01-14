@@ -60,6 +60,18 @@ describe 'navigate' do
         expect(page).to have_current_path("/transactions/new?balance_id=#{@balance.id}")
       end
     end
+
+    describe 'Delete button' do
+      it 'exists' do 
+        visit balances_path
+        expect(page).to have_link("Delete balance")
+      end
+
+      it 'works' do
+        visit balances_path
+        expect{click_on "Delete balance"}.to change(Balance, :count).by(-1)
+      end
+    end
   end
 
   describe 'creation' do
@@ -69,6 +81,27 @@ describe 'navigate' do
       expect(page).to have_content(/New balance/)
     end
 
-    # Add test for filling the form and creating the balance
+    describe 'form for balance' do
+      before do
+        @other_user_1 = FactoryBot.create(:user)
+        Friendship.create_reverse_friendships(@user.id, @other_user_1.id)
+        Friendship.last.confirmed!
+        Friendship.second_to_last.confirmed!
+        visit new_balance_path
+        fill_in 'balance[name]', :with => "BalanceName"
+        fill_in 'balance[description]', :with => "BalanceDescription"
+        select @other_user_1.username, :from => 'balance[partner_id]'
+      end
+
+      it 'creates balance' do
+        expect{click_on "Create"}.to change(Balance, :count).by(1)
+      end
+
+      it 'redirects to balance after creation' do
+        click_on "Create"
+        expect(page).to have_current_path(balance_path(Balance.last))
+        expect(page).to have_content(/BalanceName/)
+      end
+    end
   end
 end
