@@ -29,4 +29,80 @@ RSpec.describe Balance, type: :model do
       expect(@balance).to_not be_valid
     end
   end
+
+  describe "method" do
+    
+    it "partner_for works" do
+      expect(@balance.partner_for(@balance.creator).id).to eq(@balance.partner_id)
+    end
+
+    it "change_updated_at_by works" do
+      @balance.change_updated_at_by(User.find(@balance.partner_id))
+      expect(@balance.editor_id).to eq(@balance.partner_id)
+    end
+
+    describe "even " do
+      it "works when creator borrows" do
+        transaction = FactoryBot.create(:transaction,
+        issuer_id: @balance.creator_id,
+        receiver_id: @balance.partner_id,
+        balance_id: @balance.id,
+        send_money: false,
+        status: "confirmed"
+        )
+       expect(@balance.even?).to be false
+      end
+
+      it "works when creator lends" do
+        transaction = FactoryBot.create(:transaction,
+        issuer_id: @balance.creator_id,
+        receiver_id: @balance.partner_id,
+        balance_id: @balance.id,
+        send_money: true,
+        status: "confirmed"
+        )
+       expect(@balance.even?).to be false
+      end
+
+      it "works false when more than 2 transactions are present" do
+        transaction_1 = FactoryBot.create(:transaction,
+        issuer_id: @balance.creator_id,
+        receiver_id: @balance.partner_id,
+        balance_id: @balance.id,
+        send_money: true,
+        status: "confirmed"
+        )
+        transaction_2 = FactoryBot.create(:transaction,
+        issuer_id: @balance.creator_id,
+        receiver_id: @balance.partner_id,
+        balance_id: @balance.id,
+        send_money: false,
+        value: 5,
+        status: "confirmed"
+        )
+       expect(@balance.even?).to be false
+      end
+
+      it "works true when more than 2 transactions are present" do
+        transaction_1 = FactoryBot.create(:transaction,
+        issuer_id: @balance.creator_id,
+        receiver_id: @balance.partner_id,
+        balance_id: @balance.id,
+        send_money: true,
+        value: 5,
+        status: "confirmed"
+        )
+        transaction_2 = FactoryBot.create(:transaction,
+        issuer_id: @balance.creator_id,
+        receiver_id: @balance.partner_id,
+        balance_id: @balance.id,
+        send_money: false,
+        value: 5,
+        status: "confirmed"
+        )
+       expect(@balance.even?).to be true
+      end
+
+    end
+  end
 end
