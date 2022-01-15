@@ -109,6 +109,16 @@ describe 'navigate' do
     end
   end
 
+  describe 'show' do
+    it 'transaction page can be reached' do
+      transaction = FactoryBot.create(:transaction, issuer_id: @user.id)
+      balance = transaction.balance
+      balance.users << [User.find(transaction.issuer_id),User.find(transaction.receiver_id)] #not sure it should be added here, but it works
+      visit transaction_path(transaction)
+      expect(page).to have_content("Balance: #{balance.name} with user #{User.find(transaction.receiver_id).username}")
+    end
+  end
+
   describe 'actions' do
     describe 'transaction created or edited by current user' do
       before do

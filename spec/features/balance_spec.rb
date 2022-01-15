@@ -35,41 +35,54 @@ describe 'navigate' do
       expect(page).to have_link(:href => balance_path(balance))
     end
 
-    describe 'Edit Balance button' do
-      it 'exists' do
-        visit balances_path
-        expect(page).to have_link(:href => edit_balance_path(@balance))
+    describe 'Buttons' do #They are rendered as _buttons so one test should be enough?
+      describe 'Edit Balance button' do
+        it 'exists' do
+          visit balances_path
+          expect(page).to have_link(:href => edit_balance_path(@balance))
+        end
+  
+        it 'works' do
+          visit balances_path
+          click_link("Edit balance")
+          expect(page).to have_current_path(edit_balance_path(@balance))
+        end
       end
-
-      it 'works' do
-        visit balances_path
-        click_link("Edit balance")
-        expect(page).to have_current_path(edit_balance_path(@balance))
+        
+      describe 'Add Transaction button' do
+        it 'exists' do 
+          visit balances_path
+          expect(page).to have_link(:href => new_transaction_path)
+        end
+  
+        it 'works' do
+          visit balances_path
+          click_link("Add transaction")
+          expect(page).to have_current_path("/transactions/new?balance_id=#{@balance.id}")
+        end
       end
-    end
-      
-    describe 'Add Transaction button' do
-      it 'exists' do 
-        visit balances_path
-        expect(page).to have_link(:href => new_transaction_path)
-      end
-
-      it 'works' do
-        visit balances_path
-        click_link("Add transaction")
-        expect(page).to have_current_path("/transactions/new?balance_id=#{@balance.id}")
-      end
-    end
-
-    describe 'Delete button' do
-      it 'exists' do 
-        visit balances_path
-        expect(page).to have_link("Delete balance")
-      end
-
-      it 'works' do
-        visit balances_path
-        expect{click_on "Delete balance"}.to change(Balance, :count).by(-1)
+  
+      describe 'Delete button' do
+        it 'exists' do 
+          visit balances_path
+          expect(page).to have_link("Delete balance")
+        end
+  
+        it 'works' do
+          visit balances_path
+          expect{click_on "Delete balance"}.to change(Balance, :count).by(-1)
+        end
+        
+        it "doesn't exist if balance not even" do
+          transaction= FactoryBot.create(:transaction,
+          issuer_id: @user.id,
+          receiver_id: @balance.partner_id,
+          status: "confirmed",
+          balance_id: @balance.id
+          )
+          visit balances_path
+          expect(page).to_not have_link("Delete balance")
+        end
       end
     end
   end
@@ -102,6 +115,15 @@ describe 'navigate' do
         expect(page).to have_current_path(balance_path(Balance.last))
         expect(page).to have_content(/BalanceName/)
       end
+    end
+  end
+
+  describe 'show' do
+    it 'balance page can be reached' do
+      balance = FactoryBot.create(:balance, creator_id: @user.id)
+      balance.users << [User.find(balance.creator_id),User.find(balance.partner_id)] #not sure it should be added here, but it works
+      visit balance_path(balance)
+      expect(page).to have_content(/Balance #{balance.name}/)
     end
   end
 end
