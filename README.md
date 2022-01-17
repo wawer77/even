@@ -16,7 +16,7 @@ Have ever forgotten 'how much was it'? Here you can simply create balances with 
 - Groups sharing one debt
 
 ## Ruby / Rails version:
-2.5.1p57 / Rails 5.2.6
+2.6.0 / Rails 6.0.4.4
 
 ## Configuration
 - Clone the repo.
