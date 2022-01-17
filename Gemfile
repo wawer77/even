@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 #Preinstalled gems
 ruby '3.0.0'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.1.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem "puma"
 gem 'sass-rails', '~> 5.0'
