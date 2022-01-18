@@ -16,13 +16,14 @@ Have ever forgotten 'how much was it'? Here you can simply create balances with 
 - Groups sharing one debt
 
 ## Ruby / Rails version:
-2.6.0 / Rails 6.0.4.4
+3.0.0 / Rails 6.1.4.4
 
 ## Configuration
 - Clone the repo.
 - Install needed gems:
 ```
 $ bundle install
+$ yarn
 ```
 - Configure user and password in database.yml if needed.
 - Create and migrate the database:
