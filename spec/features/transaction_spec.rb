@@ -79,33 +79,32 @@ describe 'navigate' do
         end
       end
 
-      #describe 'borrowing transaction' do
-      #  #This one gets "Transaction type is not included in the list" message in the VIEW as a part of 'shows you borrowed the money' error message. If changed to transaction_send_money_true, only 2 errors instead of 4 show up, so the code here is correct. No idea how to change it. Manual tests work tho. 
-      #  before do
-      #    page.choose('transaction[send_money]', id: 'transaction_send_money_false', allow_label_click: true)
-      #  end
-#
-      #  it 'creates transaction' do
-      #    page.choose('I borrow the money')
-      #    expect{click_on "Send"}.to change(Transaction, :count).by(1)
-      #    expect(Transaction.last.send_money).to be false
-      #  end
-  #
-      #  it 'redirects to balance for transaction after creation' do
-      #    click_on "Send"
-      #    expect(page).to have_current_path(balance_path(@balance))
-      #  end
-#
-      #  it 'transaction is listed on the balance page' do
-      #    click_on "Send"
-      #    expect(page).to have_link(:href => transaction_path(Transaction.last))
-      #  end
-#
-      #  it 'shows you borrowed the money' do
-      #    click_on "Send"
-      #    expect(page).to have_content(/You borrowed: 100/)
-      #  end
-      #end
+      describe 'borrowing transaction' do
+        before do
+          page.choose('transaction[send_money]', id: 'transaction_send_money_false', allow_label_click: true)
+        end
+
+        it 'creates transaction' do
+          page.choose('I borrow the money')
+          expect{click_on "Send"}.to change(Transaction, :count).by(1)
+          expect(Transaction.last.send_money).to be false
+        end
+  
+        it 'redirects to balance for transaction after creation' do
+          click_on "Send"
+          expect(page).to have_current_path(balance_path(@balance))
+        end
+
+        it 'transaction is listed on the balance page' do
+          click_on "Send"
+          expect(page).to have_link(:href => transaction_path(Transaction.last))
+        end
+
+        it 'shows you borrowed the money' do
+          click_on "Send"
+          expect(page).to have_content(/You borrowed: 100/)
+        end
+      end
     end
   end
 
