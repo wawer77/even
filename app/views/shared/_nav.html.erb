@@ -5,7 +5,7 @@
 	<ul class="nav nav-tabs">
 	<% if current_user %>
 		<li class="nav-item">
-			<%= link_to "Home", user_root_path, {class: "nav-link #{active?(user_root_path)}"} %>
+			<%= link_to "Home", home_path, {class: "nav-link #{active?(home_path)}"} %>
 		</li>
 		<li class="nav-item">
 			<%= link_to "My balances", balances_path, {class: "nav-link #{tab_active?(balances_path)}"}  %>

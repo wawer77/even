@@ -16,6 +16,6 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
-  get '/user' => "static#logged_in_landing", :as => :user_root
+  get '/home' => "static#logged_in_landing", :as => :home
   root 'static#landing'
 end
