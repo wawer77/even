@@ -1,8 +1,8 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
-@import "gritter";
 
 #bootstrap-overrides {
+  
   .dropdown-menu {
     border-top-left-radius: 3px;
   }

@@ -12,13 +12,12 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'webpacker'
 
 #Added gems
 gem 'simple_form'
-gem 'bootstrap', '>= 4.4.1'
 gem 'devise', '>= 4.7.1'
 gem 'gritter', '~> 1.2'
-gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'pundit', '~> 2.0'
 gem 'pry-rails', :group => :development
 gem 'database_cleaner'

@@ -1,5 +1,24 @@
 {
   "name": "even",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@popperjs/core": "^2.11.2",
+    "@rails/ujs": "^7.0.1",
+    "@rails/webpacker": "5.4.3",
+    "bootstrap": "^4.6.1",
+    "gritter": "^1.7.4",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "version": "1.0.0",
+  "main": "application.js",
+  "repository": "git@github.com:wawer77/even.git",
+  "author": "wawer77 <tomek.06@wp.pl>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack-dev-server": "^3"
+  }
 }
