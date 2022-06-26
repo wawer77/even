@@ -4,7 +4,7 @@ git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 ruby '3.0.0'
 gem 'rails', '~> 6.1.0'
 gem 'pg', '>= 0.18', '< 2.0'
-gem "puma"
+gem "puma", '>= 5.6.4'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
@@ -28,8 +28,8 @@ gem "activestorage", ">= 5.2.4.3"
 gem "activesupport", ">= 5.2.4.3"
 gem 'actionview', '>= 5.2.4.2'
 gem 'railties', '>= 5.2.2.1'
-gem 'nokogiri', '>= 1.10.8'
-gem 'rack', '>= 2.0.8'
+gem 'nokogiri', '>= 1.13.6'
+gem 'rack', '>= 2.2.3.1'
 gem 'loofah', '>= 2.3.1'
 
 group :development, :test do
